@@ -1,13 +1,8 @@
 function asciiValue(string) {
-  if (string.trim('').length === 0) {
-    return 0;
+  string.trim();
+  let result = 0;
+  for (let index = 0; index < string.length; index ++) {
+    result += string.charCodeAt(index);
   }
-  let sum = 0;
-  for (let i = 0; i < string.length; i ++) {
-    let character = string.charCodeAt([i]);
-    sum += character;
-  }
-  return sum;
+  console.log(result);
 }
-
-console.log(asciiValue(''));
