@@ -4,7 +4,8 @@
 // Perform the operation on the two numbers.
 // Print the result to the terminal.
 
-const readline = require('readline-sync');
+function calculator() {
+  const readline = require('readline-sync');
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -55,3 +56,19 @@ switch (operation) {
 
 prompt(`The result is: ${output}`);
 
+prompt(`Would you like to perform another calculation?\n1) Yes\n2) No`);
+let restart = readline.question();
+
+while(!['1', '2'].includes(restart)) {
+  prompt('Please type 1 if you would like to perform another operation 2 otherwise.');
+  restart = readline.question();
+}
+
+if(restart === '1') {
+  return calculator();
+} else if (restart === '2') {
+  prompt(`Alright, have a good rest of your day then!`);
+}
+}
+
+calculator();
