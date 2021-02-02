@@ -1,22 +1,22 @@
-let objToCopy = {
-  foo: 1,
-  bar: 2,
-  qux: 3,
-};
-
-function copyObj(obj, arr) {
-  let newObj = {}
-  if (arr) {
-    arr.forEach(key => newObj[key] = obj[key]);
-    return newObj;
+function stringToInteger(str) {
+  let digits = {
+    0: 0,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+    6: 6,
+    7: 7,
+    8: 8,
+    9: 9,
   }
+  let arrayOfDigits = str.split("").map(char => digits[char]);
+
+  let value = 0;
+
+  arrayOfDigits.forEach(digit => (value = (10 * value) + digit));
+
+  return value;
 }
-
-let newObj = copyObj(objToCopy);
-console.log(newObj);        // => { foo: 1, bar: 2, qux: 3 }
-
-let newObj2 = copyObj(objToCopy, [ 'foo', 'qux' ]);
-console.log(newObj2);       // => { foo: 1, qux: 3 }
-
-let newObj3 = copyObj(objToCopy, [ 'bar' ]);
-console.log(newObj3);       // => { bar: 2 }
+console.log(stringToInteger("4321"));
