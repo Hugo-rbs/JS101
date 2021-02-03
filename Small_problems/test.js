@@ -1,6 +1,10 @@
-function value(n) {
-  console.log(n);
-  return n;
+function getNameFromUser() {
+  return 'Claude';
 }
 
-console.log(value(3) + value(5) * value(7));
+let name;
+if (name = getNameFromUser()) {
+  console.log(`Hi ${name}`);
+} else {
+  console.log("you must enter your name!");
+}
