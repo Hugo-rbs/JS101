@@ -4,8 +4,8 @@
 // Perform the operation on the two numbers.
 // Print the result to the terminal.
 
-function calculator() {
-  const readline = require('readline-sync');
+const readline = require('readline-sync');
+const MESSAGES = require('./calculator_messages.json');
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -15,29 +15,31 @@ function invalidNumber(number) {
   return number.trimStart() === '' || Number.isNaN(Number(number));
 }
 
-prompt('Welcome to the Calculator!');
+prompt(MESSAGES['welcome']);
 
-prompt('What is the first number?');
+while (true) {
+  
+prompt(MESSAGES['first']);
 let number1 = readline.question();
 
 while (invalidNumber(number1)) {
-  prompt('Hmm.. that doesn\'t look like a valid number.');
+  prompt(MESSAGES['error']);
   number1 = readline.question();
 }
 
-prompt('What is the second number?');
+prompt(MESSAGES['second']);
 let number2 = readline.question();
 
 while (invalidNumber(number2)) {
-  prompt('Hmm.. that doesn\'t look like a valid number.');
+  prompt(MESSAGES['error']);
   number2 = readline.question();
 }
 
-prompt('What operation would you like to perform?\n1) Add\n2) Substract\n3) Multiply \n4)Divide');
+prompt(MESSAGES['operation']);
 let operation = readline.question();
 
 while (!['1', '2', '3', '4'].includes(operation)) {
-  prompt('Must choose 1, 2, 3, or 4');
+  prompt(MESSAGES["error2"]);
   operation = readline.question();
 }
 
@@ -56,19 +58,8 @@ switch (operation) {
 
 prompt(`The result is: ${output}`);
 
-prompt(`Would you like to perform another calculation?\n1) Yes\n2) No`);
-let restart = readline.question();
+prompt(MESSAGES['new']);
+let answer = readline.question();
 
-while(!['1', '2'].includes(restart)) {
-  prompt('Please type 1 if you would like to perform another operation 2 otherwise.');
-  restart = readline.question();
+if (answer[0].toLowerCase() !== 'y') break;
 }
-
-if(restart === '1') {
-  return calculator();
-} else if (restart === '2') {
-  prompt(`Alright, have a good rest of your day then!`);
-}
-}
-
-calculator();
