@@ -12,6 +12,7 @@ console.log('Welcome to the car loan Calculator!');
 
 prompt("What's your loan amount? Please provide a number");
 let loanAmount = readline.question();
+console.clear();
 
 while (invalidNumber(loanAmount)) {
   prompt("please provide an integer number");
@@ -20,6 +21,7 @@ while (invalidNumber(loanAmount)) {
 
 prompt("Please provide your annual percentage rate (APR) in % (eg for 10% type 10)");
 let annualPerRate = readline.question();
+console.clear();
 
 while (invalidNumber(annualPerRate)) {
   prompt("please provide an integer number");
@@ -29,7 +31,7 @@ while (invalidNumber(annualPerRate)) {
 
 prompt("please provide your loan duration in years (eg 5.5 for a 5 years and a half)");
 let loanLength = readline.question();
-
+console.clear();
 const LOAN_MONTH = loanLength * 12;
 
 const MONTHLY_INTEREST_RATE = annualPerRate / 12 / 100;
