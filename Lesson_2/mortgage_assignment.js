@@ -18,7 +18,6 @@ while (true) {
   console.clear();
 
   while (error(loanAmount) || loanAmount < 500) {
-    //prompt(MESSAGES['error']);
     console.log(`=> Please provide a positive number > 500`);
     loanAmount = READLINE.question();
     console.clear();
@@ -38,8 +37,8 @@ while (true) {
   let loanLengthInYears = READLINE.question();
   console.clear();
 
-  while (error(loanLengthInYears) || loanLengthInYears < 0.5) {
-    console.log(`=> Please provide a positive number > 0.5`);
+  while (error(loanLengthInYears) || loanLengthInYears < 0.5 || loanLengthInYears > 30) {
+    console.log(`=> Please provide a positive number between 0.5 and 30`);
     loanLengthInYears = READLINE.question();
     console.clear();
   }
@@ -47,7 +46,7 @@ while (true) {
   const LOAN_LENGTH = loanLengthInYears * 12;
 
   const MONTHLY_INTEREST = (annualPerRate / 100) / 12;
-
+  
   let monthlyPayment = loanAmount * (MONTHLY_INTEREST /
     (1 - Math.pow((1 + MONTHLY_INTEREST), (-LOAN_LENGTH))));
 
