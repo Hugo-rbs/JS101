@@ -3,6 +3,6 @@
   "amount" : "Please provide the amount of your loan - minimum allowed: $500 (Please provide a number)",
   "APR" : "Please provide the Annual Percentage Rate (APR) of your Loan (Please provide a number - eg: for 10%: 10)",
   "length" : "Please provide the duration of your loan in years - if one year and an half type as follow 1.5 (The loan length must be of 6 months min - 30 years max)",
-  "error" : "Please provide a positive number",
+  "error" : "Please provide a positive number > 0",
   "again" : "Would you like to simulate another mortgage? (y/n)"
 }

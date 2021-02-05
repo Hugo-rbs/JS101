@@ -27,7 +27,7 @@ while (true) {
   let annualPerRate = READLINE.question();
   console.clear();
 
-  while (error(annualPerRate)) {
+  while (error(annualPerRate) || annualPerRate <= 0) {
     prompt(MESSAGES['error']);
     annualPerRate = READLINE.question();
     console.clear();
@@ -37,7 +37,8 @@ while (true) {
   let loanLengthInYears = READLINE.question();
   console.clear();
 
-  while (error(loanLengthInYears) || loanLengthInYears < 0.5 || loanLengthInYears > 30) {
+  while (error(loanLengthInYears) || loanLengthInYears < 0.5 ||
+  loanLengthInYears > 30) {
     console.log(`=> Please provide a positive number between 0.5 and 30`);
     loanLengthInYears = READLINE.question();
     console.clear();
@@ -46,7 +47,7 @@ while (true) {
   const LOAN_LENGTH = loanLengthInYears * 12;
 
   const MONTHLY_INTEREST = (annualPerRate / 100) / 12;
-  
+
   let monthlyPayment = loanAmount * (MONTHLY_INTEREST /
     (1 - Math.pow((1 + MONTHLY_INTEREST), (-LOAN_LENGTH))));
 
@@ -54,14 +55,14 @@ while (true) {
   let totalInterest = totalPayment - loanAmount;
 
   console.log(`Payment Every Month: $${monthlyPayment.toFixed(2)}\n
-  Total Payment is of: $${totalPayment.toFixed(2)}\n
-  Total Interest is of $${totalInterest.toFixed(2)}`);
+  Total Payment: $${totalPayment.toFixed(2)}\n
+  Total Interest: $${totalInterest.toFixed(2)}`);
 
   prompt(MESSAGES['again']);
   let again = READLINE.question();
   console.clear();
   if (again.toLowerCase() !== 'y') {
-    console.log('Alright have a good day then!');
+    console.log('Alright, have a good day then!');
     break;
   }
 }
