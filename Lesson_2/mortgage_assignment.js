@@ -38,8 +38,8 @@ while (true) {
   let loanLengthInYears = READLINE.question();
   console.clear();
 
-  while (error(loanLengthInYears)) {
-    prompt(MESSAGES['error']);
+  while (error(loanLengthInYears) || loanLengthInYears < 0.5) {
+    console.log(`=> Please provide a positive number > 0.5`)
     loanLengthInYears = READLINE.question();
     console.clear();
   }
@@ -60,7 +60,7 @@ while (true) {
 
   prompt(MESSAGES['again']);
   let again = READLINE.question();
-
+  console.clear();
   if (again.toLowerCase() !== 'y') {
     console.log('Alright have a good day then!');
     break;
