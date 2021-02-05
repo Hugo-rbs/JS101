@@ -1,18 +1,68 @@
-/* 
-Input: 
-- Loan amount: 
-- Annual Percentage Rate(APR):
-- Loan duration/year:
+const READLINE = require('readline-sync');
+const MESSAGES = require('./assignment_mortgage_messages.json');
 
-Formula: 
-- Loan duration/months: loan duration(years) * 12 (const LOAN_MONTH)
-- Monthly interest rate: ((APR / 100) / LOAN_MONTH) = Monthly interest rate(decimal)
-- Monthly payment: loanAmount * (MonthlyInterestRate / (1 - Math.pow((1 + MonthlyInterestRate),(-LOAN_MONTH)))
+function prompt(message) {
+  console.log(`=> ${message}`);
+}
 
-Output: Math.round(Monthly payments)
+function error(number) {
+  return number.trimStart() === '' || Number.isNaN(Number(number));
+}
 
-examples: 
-- loan amount: 15000;
-- Annual Percentage Rate (in %): 10%
-- loan duration in years: 5
+console.log('Welcome to the mortgage calculator!');
 
+while (true) {
+
+  prompt(MESSAGES['amount']);
+  let loanAmount = READLINE.question();
+  console.clear();
+
+  while (error(loanAmount) || loanAmount < 500) {
+    //prompt(MESSAGES['error']);
+    console.log(`=> Please provide a positive number > 500`);
+    loanAmount = READLINE.question();
+    console.clear();
+  }
+
+  prompt(MESSAGES['APR']);
+  let annualPerRate = READLINE.question();
+  console.clear();
+
+  while (error(annualPerRate)) {
+    prompt(MESSAGES['error']);
+    annualPerRate = READLINE.question();
+    console.clear();
+  }
+
+  prompt(MESSAGES['length']);
+  let loanLengthInYears = READLINE.question();
+  console.clear();
+
+  while (error(loanLengthInYears)) {
+    prompt(MESSAGES['error']);
+    loanLengthInYears = READLINE.question();
+    console.clear();
+  }
+
+  const LOAN_LENGTH = loanLengthInYears * 12;
+
+  const MONTHLY_INTEREST = (annualPerRate / 100) / 12;
+
+  let monthlyPayment = loanAmount * (MONTHLY_INTEREST /
+    (1 - Math.pow((1 + MONTHLY_INTEREST), (-LOAN_LENGTH))));
+
+  let totalPayment = monthlyPayment * LOAN_LENGTH;
+  let totalInterest = totalPayment - loanAmount;
+
+  console.log(`Payment Every Month: $${monthlyPayment.toFixed(2)}\n
+  Total Payment is of: $${totalPayment.toFixed(2)}\n
+  Total Interest is of $${totalInterest.toFixed(2)}`);
+
+  prompt(MESSAGES['again']);
+  let again = READLINE.question();
+
+  if (again.toLowerCase() !== 'y') {
+    console.log('Alright have a good day then!');
+    break;
+  }
+}

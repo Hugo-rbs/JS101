@@ -6,3 +6,8 @@ function prompt(message) {
 }
 
 prompt(MESSAGES['welcome'])
+/*
+while(true){
+  
+}
+*/
