@@ -1,8 +1,8 @@
-const READLINE = require('readline-sync');
-const MESSAGES = require('./assignment_mortgage_messages.json');
-
-function prompt(message) {
-  console.log(`=> ${message}`);
+function foo(number) {
+  return number;
 }
 
-prompt(MESSAGES['welcome'])
+let number = 1;
+let newNumber = foo(number);
+
+console.log(newNumber)

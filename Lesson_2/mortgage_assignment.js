@@ -5,8 +5,21 @@ function prompt(message) {
   console.log(`=> ${message}`);
 }
 
-function error(number) {
-  return number.trimStart() === '' || Number.isNaN(Number(number));
+function validPerRate(rate) {
+  return rate.trimStart() === '' || Number.isNaN(Number(rate)) ||
+  rate <= 0;
+
+}
+
+function validLoanAmount(loanamount) {
+  return loanamount.trimStart() === '' || Number.isNaN(Number(loanamount)) ||
+  loanamount < 500;
+}
+
+function validLoanDuration(loanlength) {
+  return loanlength.trimStart() === '' || Number.isNaN(Number(loanlength)) ||
+  loanlength < 0.5 || loanlength >= 30;
+
 }
 
 console.log('Welcome to the mortgage calculator!');
@@ -17,7 +30,7 @@ while (true) {
   let loanAmount = READLINE.question();
   console.clear();
 
-  while (error(loanAmount) || loanAmount < 500) {
+  while (validLoanAmount(loanAmount)) {
     console.log(`=> Please provide a positive number > 500`);
     loanAmount = READLINE.question();
     console.clear();
@@ -27,7 +40,7 @@ while (true) {
   let annualPerRate = READLINE.question();
   console.clear();
 
-  while (error(annualPerRate) || annualPerRate <= 0) {
+  while (validPerRate(annualPerRate)) {
     prompt(MESSAGES['error']);
     annualPerRate = READLINE.question();
     console.clear();
@@ -37,8 +50,7 @@ while (true) {
   let loanLengthInYears = READLINE.question();
   console.clear();
 
-  while (error(loanLengthInYears) || loanLengthInYears < 0.5 ||
-  loanLengthInYears > 30) {
+  while (validLoanDuration(loanLengthInYears)) {
     console.log(`=> Please provide a positive number between 0.5 and 30`);
     loanLengthInYears = READLINE.question();
     console.clear();
@@ -61,8 +73,16 @@ while (true) {
   prompt(MESSAGES['again']);
   let again = READLINE.question();
   console.clear();
-  if (again.toLowerCase() !== 'y') {
-    console.log('Alright, have a good day then!');
-    break;
+
+  while (again.toLowerCase() !== 'y' && again.toLowerCase() !== 'n') {
+    console.log('Please type "y" for yes, "n" for no.');
+    again = READLINE.question();
   }
+    if (again.toLowerCase() === 'n') {
+      console.log('Alright, have a good day then!');
+      break;
+    }
 }
+
+
+// error(loanAmount)|| loanAmount < 500 on loan.
