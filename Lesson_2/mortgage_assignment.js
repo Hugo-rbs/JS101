@@ -78,10 +78,10 @@ while (true) {
     console.log('Please type "y" for yes, "n" for no.');
     again = READLINE.question();
   }
-    if (again.toLowerCase() === 'n') {
-      console.log('Alright, have a good day then!');
-      break;
-    }
+  if (again.toLowerCase() === 'n') {
+    console.log('Alright, have a good day then!');
+    break;
+  }
 }
 
 
