@@ -57,7 +57,6 @@ while (true) {
   }
 
   const LOAN_LENGTH = loanLengthInYears * 12;
-
   const MONTHLY_INTEREST = (annualPerRate / 100) / 12;
 
   let monthlyPayment = loanAmount * (MONTHLY_INTEREST /
@@ -83,6 +82,3 @@ while (true) {
     break;
   }
 }
-
-
-// error(loanAmount)|| loanAmount < 500 on loan.

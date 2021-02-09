@@ -1,4 +1,4 @@
-const readline = require('readline-sync');
+onst readline = require('readline-sync');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 
 
@@ -70,4 +70,3 @@ do {
 
   if (answer[0] !== 'y') break;
 }  while (true);
-
