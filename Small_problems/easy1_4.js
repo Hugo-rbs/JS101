@@ -1,4 +1,4 @@
-rlSync = require('readline-sync');
+let rlSync = require('readline-sync');
 let length = Number(rlSync.question('Enter the length of the room in meters: '));
 let width = Number(rlSync.question('Enter the width of the room in meters: '));
 

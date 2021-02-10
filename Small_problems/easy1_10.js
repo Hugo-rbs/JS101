@@ -1,10 +1,20 @@
-function multiSum(number) {
-  let result = number;
-  for (let n = 1 ; n < number; n++) {
-    if (n % 3 === 0 || n % 5 === 0)
-    result += n;
-  }
-  console.log(result);
+function isMultiple(number, factor) {
+  return number % factor === 0;
 }
 
-multisum(10);
+function multisum(targetNumber) {
+  let arrayOfMultiples = [];
+  let result = 0;
+
+  for (let number = 0; number <= targetNumber; number ++) {
+  if (isMultiple(number, 3) || isMultiple(number, 5)) {
+    arrayOfMultiples.push(number);
+  }
+ }
+ for (let idx = 0; idx < arrayOfMultiples.length; idx++) {
+   result += arrayOfMultiples[idx];
+ }
+ console.log(result);
+}
+
+multisum(20);

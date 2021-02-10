@@ -10,25 +10,24 @@ function stringToSignedInteger(string) {
     7: 7,
     8: 8,
     9: 9,
-  } 
+  };
   let arrayOfDigits = string.split("");
   let digitsToConvert = [];
   let value = 0;
-  if (arrayOfDigits.includes('-') || arrayOfDigits.includes('+') {
-    digitsToConvert = arrayOfDigits.slice(1).map(character => DIGITS[character]);
+  digitsToConvert = arrayOfDigits.map(character => DIGITS[character]);
+  if (arrayOfDigits.includes('-')) {
+    digitsToConvert.slice(1).forEach(element => value = (10 * value ) + element);
+    return -Math.abs(value);
+  } else if (arrayOfDigits.includes('+')) {
+    digitsToConvert.slice(1).forEach(element => value = (10 * value ) + element);
+    return value;
+  } else {
     digitsToConvert.forEach(element => value = (10 * value ) + element);
     return value;
   }
-
-  
-  
-  if (arrayOfDigits.includes('-')) {
-    return -Math.abs(value);
-  } else{
-  return value;
-  }
 }
+
 
 console.log(stringToSignedInteger("4321") === 4321); // logs true
 console.log(stringToSignedInteger("-570") === -570); // logs true
-console.log(stringToSignedInteger("+100") === 100);
+console.log(stringToSignedInteger("+100") === 100); //true

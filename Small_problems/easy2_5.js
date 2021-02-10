@@ -18,3 +18,25 @@ console.log(`==> ${firstNumber} * ${secondNumber} = ${product(firstNumber, secon
 console.log(`==> ${firstNumber} / ${secondNumber} = ${quotient(firstNumber, secondNumber)}`);
 console.log(`==> ${firstNumber} % ${secondNumber} = ${remainder(firstNumber, secondNumber)}`);
 console.log(`==> ${firstNumber} ** ${secondNumber} = ${Math.pow(firstNumber, secondNumber)}`);
+
+// second attempt 
+
+/*
+
+const readline = require('readline-sync');
+
+let firstNumber = Number(readline.question('=> Enter the first number: '));
+let secondNumber = Number(readline.question('=> Enter the second number: '));
+
+function compute(n1, n2) {
+  return `=> n1 + n2 = ${n1 + n2}\n 
+  => ${n1} - ${n2} = ${n1 - n2}\n
+  => ${n1} * ${n2} = ${n1 * n2}\n
+  => ${n1} / ${n2} = ${Math.round(n1 / n2)}\n
+  => ${n1} % ${n2} = ${n1 % n2}\n
+  => ${n1} ** ${n2} = ${n1 ** n2}`
+}
+
+console.log(compute(firstNumber, secondNumber));
+
+*/

@@ -1,4 +1,7 @@
-onst readline = require('readline-sync');
+// Need to do the second and third bonus assignment 
+// Need to find a way to change or make the functions /userWin and /computerWin shorter 
+
+const readline = require('readline-sync');
 const VALID_CHOICES = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
 
 

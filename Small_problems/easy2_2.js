@@ -6,3 +6,15 @@ if(name.includes('!')) {
 } else {
   console.log(`Hello ${name}.`);
 }
+
+// second attempt 
+/*
+
+const readline = require('readline-sync');
+
+console.log('What is your name? ')
+let name = readline.question();
+
+console.log(name.includes('!') ? `HELLO ${name.slice(0, name.length -1).toUpperCase()}. WHY ARE YOU SCREAMING` : `Hello ${name}`);
+
+*/

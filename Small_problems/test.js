@@ -1,10 +1,7 @@
-function getNameFromUser() {
-  return 'Claude';
+function penultimate(string) {
+let arr = string.split(' ');
+return arr[arr.length -2];
 }
 
-let name;
-if (name = getNameFromUser()) {
-  console.log(`Hi ${name}`);
-} else {
-  console.log("you must enter your name!");
-}
+console.log(penultimate("last word") === "last"); // logs true
+console.log(penultimate("Launch School is great!") === "is");
