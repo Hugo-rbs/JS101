@@ -1,9 +1,19 @@
-const DIGIT = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
-function integerToString(integer) {
-  let result = 0;
+const STRING_VALUES = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+function integerToString(number) {
+  let result = '';
+
   do {
-    if (integer > 0) {
-      integer % 10
-    }
-  }
+    let remainder = number % 10;
+    number = Math.floor(number / 10);
+
+    result = STRING_VALUES[remainder] + result;
+  } while (number > 0);
+
+  console.log(result);
 }
+  
+integerToString(4321);      // "4321"
+integerToString(0);         // "0"
+integerToString(5000);      // "5000"
+integerToString(1234567890);      // "1234567890"
