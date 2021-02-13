@@ -1,12 +1,10 @@
-function xor(value1, value2) {
-  if ((value1 && !value2) || (value2 && !value1)) {
-    return true;
-  } else {
-    return false;
-  }
-}
+let vocabulary = [
+  ['happy', 'cheerful', 'merry', 'glad'],
+  ['tired', 'sleepy', 'fatigued', 'drained'],
+  ['excited', 'eager', 'enthused', 'animated']
+];
 
-console.log(xor(5, 0) === true);
-console.log(xor(false, true) === true);
-console.log(xor(1, 1) === false);
-console.log(xor(true, true) === false);
+let wordPrompt = vocabulary.map(synonymsArr => synonymsArr.map(words => words)).split(' ');
+
+
+console.log(wordPrompt);
