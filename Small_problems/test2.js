@@ -1,10 +1,8 @@
-let vocabulary = [
-  ['happy', 'cheerful', 'merry', 'glad'],
-  ['tired', 'sleepy', 'fatigued', 'drained'],
-  ['excited', 'eager', 'enthused', 'animated']
-];
+let name = "Bob";
 
-let wordPrompt = vocabulary.map(synonymsArr => synonymsArr.map(words => words)).split(' ');
+const changeName = function() {
+  name = "Joe";
+}
 
-
-console.log(wordPrompt);
+changeName(name);
+console.log(name);
