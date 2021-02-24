@@ -1,11 +1,6 @@
-function myfunction() {
-  let a = 1;
+let objA = { a: 1, b: 2}
+let objB = Object.create(objA);
+objB = {c: 1, d: 2};
 
-  if (true) {
-    // console.log(a);
-    // let a = 2;
-    console.log(a);
-  }
-}
-
-myfunction();
+let keys =  Object.keys(objB);
+console.log(keys);

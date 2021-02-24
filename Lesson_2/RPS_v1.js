@@ -7,14 +7,16 @@ const WINNING_COMBOS = {
   paper : {rock: 'covers', spock: 'disproves'},
   lizard : {spock: 'poisons', paper: 'eats'},
   spock : {scissors: 'smashes', rock: 'vaporizes'}
-}
+};
 
 function userWin(choice, computerChoice) {
-return Object.keys(WINNING_COMBOS[choice].includes(WINNING_COMBOS[computerChoice]));
+  return Object.keys(WINNING_COMBOS[choice]
+    .includes(WINNING_COMBOS[computerChoice]));
 }
 
 function computerWins(choice, computerChoice) {
-  return Object.keys(WINNING_COMBOS[computerChoice].includes(WINNING_COMBOS[choice]))
+  return Object.keys(WINNING_COMBOS[computerChoice]
+    .includes(WINNING_COMBOS[choice]));
 }
 
 function displayWinner(choice, computerChoice) {
@@ -58,7 +60,5 @@ do {
 
   if (answer[0] !== 'y') break;
 }  while (true);
-
-
 
 

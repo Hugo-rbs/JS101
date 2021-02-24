@@ -1,42 +1,46 @@
 const readline = require('readline-sync');
-const VALID_CHOICES = ['Rock', 'Paper', 'Scissors'];
-let again;
-
-function displayWinner(choice, computerChoice) {
-  if (choice === 'Rock' && computerChoice === 'Scissors') {
-    console.log('You win!');
-  } else if (choice === 'Paper' && computerChoice === 'Rock') {
-    console.log('You win!');
-  } else if (choice === 'Scissors' && computerChoice === 'Paper') {
-    console.log('You win!');
-  } else if (choice === computerChoice) {
-    console.log('It\'s a tie');
-  } else {
-    console.log('The computer wins');
-  }
-}
+const VALID_CHOICES = ['rock', 'paper', 'scissors', ];
 
 function prompt(message) {
   console.log(`=> ${message}`);
 }
 
-do {
+function displayWinner(choice, computerChoice) {
+  prompt(`You chose ${choice}, computer chose ${computerChoice}`);
+
+  if ((choice === 'rock' && computerChoice === 'scissors') ||
+      (choice === 'paper' && computerChoice === 'rock') ||
+      (choice === 'scissors' && computerChoice === 'paper')) {
+    prompt('You win!');
+  } else if ((choice === 'rock' && computerChoice === 'paper') ||
+             (choice === 'paper' && computerChoice === 'scissors') ||
+             (choice === 'scissors' && computerChoice === 'rock')) {
+    prompt('Computer wins!');
+  } else {
+    prompt("It's a tie!");
+  }
+}
+
+while (true) {
   prompt(`Choose one: ${VALID_CHOICES.join(', ')}`);
   let choice = readline.question();
 
   while (!VALID_CHOICES.includes(choice)) {
-    console.log('Please provide a valid choice.');
+    prompt("That's not a valid choice");
     choice = readline.question();
   }
 
   let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
   let computerChoice = VALID_CHOICES[randomIndex];
 
-  prompt(`You choose: ${choice}, the computer choose: ${computerChoice}`);
+  displayWinner(choice, computerChoice);
 
-  displayWinner();
+  prompt('Do you want to play again (y/n)?');
+  let answer = readline.question().toLowerCase();
+  while (answer[0] !== 'n' && answer[0] !== 'y') {
+    prompt('Please enter "y" or "n".');
+    answer = readline.question().toLowerCase();
+  }
 
-  prompt(`Would you like to play another game? Y/N`);
-  again = readline.question();
-
-} while (again[0] === 'Y'.toUpperCase());
+  if (answer[0] !== 'y') break;
+}

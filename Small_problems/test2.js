@@ -1,8 +1,4 @@
-let name = "Bob";
-
-const changeName = function() {
-  name = "Joe";
+let winningCombos = {
+  paper: {'rock' 'spock'}
+  rock: 'lizard'
 }
-
-changeName(name);
-console.log(name);
