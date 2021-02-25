@@ -1,6 +1,12 @@
-let objA = { a: 1, b: 2}
-let objB = Object.create(objA);
-objB = {c: 1, d: 2};
+function stringy(number) {
+  let result = '';
+  for (let counter = 1; counter <= number; counter += 1) {
+    result += counter % 2 === 1 ? 1 : 0
+  }
+  console.log(result);
+}
 
-let keys =  Object.keys(objB);
-console.log(keys);
+stringy(6)
+stringy(9);    // "101010101"
+stringy(4);    // "1010"
+stringy(7); 

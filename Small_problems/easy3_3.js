@@ -10,6 +10,30 @@ function stringy(number){
   console.log(result.join(''));
 }
 
+// function stringy(number) {
+//   let counter = 1;
+//   let result = '';
+
+//   while (counter <= number ) {
+//     if (counter % 2 === 1) {
+//       result += '1';
+//     } else if(counter % 2 == '0') {
+//       result += '0'
+//     }
+//     counter += 1;
+//   }
+//   console.log(result);
+// }
+
+
+// function stringy(number) {
+//   let result = '';
+//   for (let counter = 1; counter <= number; counter += 1) {
+//     result += counter % 2 === 1 ? 1 : 0
+//   }
+//   console.log(result);
+// }
+
 stringy(6);    // "101010"
 stringy(9);    // "101010101"
 stringy(4);    // "1010"
