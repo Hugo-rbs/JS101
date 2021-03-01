@@ -60,3 +60,31 @@ function printSpacesAndStars(numberOfSpaces, numberOfStars){
 }
 
 triangle(5);
+
+// solution 2: 
+
+/*
+
+function logStars(number) {
+  for (let starsToLog = 1; starsToLog <= number; starsToLog++) {
+    console.log(' '.repeat(number - starsToLog) + '*'.repeat(starsToLog));
+  }
+}
+
+*/
+
+// solution 3: 
+
+/*
+function triangle(height) {
+  let spacesToLog = height - 1;
+  let starsToLog = 1;
+
+  while (height > 0) {
+    console.log(' '.repeat(spacesToLog) + "*".repeat(starsToLog));
+    spacesToLog -=1
+    starsToLog += 1;
+    height -= 1;
+  }
+}
+*/

@@ -5,23 +5,20 @@ function prompt(message) {
   console.log(`=> ${message}`);
 }
 
+function userChoiceValidation(userChoice) {
 
-function userChoiceVerification(userChoice) {
-  for (let choicesIdx = 0; choicesIdx < VALID_CHOICES.length; i++) {
-    if (userChoice.toUpperCase() !== VALID_CHOICES[choicesIdx].toUpperCase() ||
-    userChoice[0].toUpperCase() !== VALID_CHOICES[choicesIdx[0]].toUpperCase()) {
-      return false;
-    } 
-  }
-  return true;
+  for (let idx = 0; idx < VALID_CHOICES.length; idx ++) {
+    if (userChoice === VALID_CHOICES[idx] || userChoice[0] === VALID_CHOICES[idx][0]) {
+      return true;
+    }
+  } return false;
 }
-
 
 
 prompt(`Please choose one:${VALID_CHOICES.join(', ')}`);
 let userChoice = readline.question();
 
-while (userChoiceVerification(userChoice)) {
+while (!userChoiceValidation(userChoice)) {
   prompt('Please provide a valid choice' );
-  let userChoice = readline.question()
+  userChoice = readline.question()
 }

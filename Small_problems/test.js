@@ -1,6 +1,7 @@
-function greet(message) {
-  console.log(message);
+function greet(firstname, lastname, language) {
+  console.log(firstname);
+  console.log(lastname);
+  console.log(language);
 }
 
-
-let greet() => {}
+greet();

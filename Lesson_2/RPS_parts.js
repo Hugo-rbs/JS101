@@ -8,21 +8,18 @@
 
 const VALID_CHOICES = ['scissors', 'paper', 'rock', 'lizard', 'spock']
 
-// function userChoiceVerification(userChoice) {
-//   for (let choicesIdx = 0; choicesIdx < VALID_CHOICES.length; i++) {
-//     if (userChoice.toUpperCase() !== VALID_CHOICES[choicesIdx].toUpperCase() ||
-//     userChoice[0].toUpperCase() !== VALID_CHOICES[choicesIdx[0]].toUpperCase()) {
-//       return false;
-//     } 
-//   }
-//   return true;
+// function to validate user's input //
+
+// function userChoiceValidation(userChoice) {
+
+//   for (let idx = 0; idx < VALID_CHOICES.length; idx ++) {
+//     if (userChoice === VALID_CHOICES[idx] || userChoice[0] === VALID_CHOICES[idx][0]) {
+//       return true;
+//     }
+//   } return false;
 // }
 
-// console.log(userChoiceVerification('paper'))
+// function to generate a random choice for the computer // 
 
-for (let i = 0; i < VALID_CHOICES.length; i++) {
-  let word = VALID_CHOICES[i];
-  for (let i = 0; i < word.length; i++) {
-    console.log(word[0]);
-  }
-}
+let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
+let computerChoice = VALID_CHOICES[randomIndex];

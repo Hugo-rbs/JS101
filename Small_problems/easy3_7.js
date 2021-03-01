@@ -1,44 +1,49 @@
-/*
-input: positive integer n 
-output: if n is not a double number, return n else return n * 2; 
-
-examples: 
-
-twice(37); 3 and 7 are not double result: 37 * 2 = 74;
-twice (444): n has 3 digits so it cannot be a double;
-twice (2424): returns 2424;
-
-1. we need to check if n is a double
-2. if n is a double we return n
-3. if not we return n * 2
-
-1. is double ?
-1.1 if n is odd return false
-1.2 if n is even we need to split it into two equal parts 
-1.2.1: if part 1 === part 2 return n
-1.2.2: if part 1 !== part 2 return false 
-
-
-*/
-
-//checking if number is double:
-
-function isDouble(n) {
-  return n % 2 === 0 ? true : false;
+function isEven(number) {
+  return number % 2 === 0;
 }
 
-// function twice 
+function numberToArray(number) {
+  let result = '';
 
-function twice(n) {
-  if (!isDouble(n)) {
-    console.log(n * 2); 
-  } else {
-    let arrayOfNumber = n.toString().split('');
-    for (let i = 0; i < arrayOfNumber; i++) {
-      if (arrayOfNumber[i] === (arrayOfNumber.length / 2))
-      console.log(arrayOfNumber.join());
+  while (number > 0) { 
+    let remainder = number % 10;
+    number = Math.floor(number / 10);
+    result = remainder + result;
+  }
+  return result.split('');
+}
+
+
+console.log(numberToArray(3333))
+
+
+function equalArrays(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if(newArr.indexOf(arr[i]) < 0) {
+      newArr.push(arr[i])
     }
+  }
+  return newArr.length % 2 === 0;
+}
+
+console.log(equalArrays(3333))
+
+function twice(number) {
+  if (!isEven(number)) {
+    return number * 2
+  } else if (!numberToArray(equalArrays(number))) {
+    return number * 2;
+  } else {
+    return number;
   }
 }
 
-twice(234234);
+console.log(twice(37));
+console.log(twice(44));          // 44
+console.log(twice(334433));      // 668866
+console.log(twice(444));         // 888
+console.log(twice(107));         // 214
+console.log(twice(103103));      // 103103
+console.log(twice(3333));        // 3333
+console.log(twice(7676));        // 7676
