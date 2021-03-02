@@ -13,20 +13,9 @@ function prompt(message) {
   console.log(`=> ${message}`);
 }
 
-
-function userChoiceValidation(userChoice) {
-
-  for (let idx = 0; idx < VALID_CHOICES.length; idx ++) {
-    if (userChoice === VALID_CHOICES[idx] || userChoice[0] === VALID_CHOICES[idx][0]) {
-      return true;
-    }
-  } return false;
-}
-
 function userWins(userChoice, computerChoice) {
-  return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice);
+  return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice); 
 }
-
 
 function computerWins(userChoice, computerChoice) {
   return Object.keys(WINNING_COMBOS[computerChoice]).includes(userChoice);
@@ -43,19 +32,10 @@ function displayWinner(userChoice, computerChoice) {
   }
 }
 
-prompt(`Please choose one: ${VALID_CHOICES.join(', ')} (provide the full word or the first letter)`);
+prompt(`Please choose one: ${VALID_CHOICES.join(', ')}`);
 let userChoice = readline.question();
+console.clear()
 
-if (userChoice === 's') {
-  prompt('Did you mean scissors or spock? Please type your anwser');
-  userChoice = readline.question();
-}
-
-while (!userChoiceValidation(userChoice)) {
-  prompt('Please provide a valid choice' );
-  
-  userChoice = readline.question()
-}
 
 let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
 let computerChoice = VALID_CHOICES[randomIndex];
