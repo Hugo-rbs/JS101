@@ -1,5 +1,4 @@
 const readline = require('readline-sync');
-const VALID_CHOICES = ['scissors', 'paper', 'rock', 'lizard', 'spock'];
 const WINNING_COMBOS = {
   scissors : {paper : 'cuts', lizard: 'disaproves'},
   rock : {scissors: 'crushes', lizard: 'crushes'},

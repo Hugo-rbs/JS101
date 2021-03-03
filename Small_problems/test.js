@@ -1,6 +1,22 @@
-let array = [3, 5, 7];
-console.log(sumOfSquares(array)); // => 83
-
-function sumOfSquares(array) {
- return array.reduce((element, accumulator) =>  {return accumulator + element * element}, 0);
+function cleanUp(string) {
+  let result = ''
+  for (let i = 0; i < string.length; i++) {
+    if(isUpperCase(string[i]) || isLowerCase(string[i])) {
+      result += string[i];
+    } else if (result[result.length -1] !== ' ') {
+      result += ' ';
+    } 
+  }
+  console.log(result);
 }
+
+function isUpperCase(letter) {
+  return letter >= 'A' && letter <= 'Z';
+}
+
+function isLowerCase(letter) {
+  return letter >= 'a' && letter <= 'z'
+}
+
+
+cleanUp("---what's my +*& line?")

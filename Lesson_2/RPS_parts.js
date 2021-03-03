@@ -1,5 +1,5 @@
 const WINNING_COMBOS = {
-  scissors : {paper : 'cuts', spock: 'disaproves'},
+  scissors : {paper : 'cuts', lizard: 'disaproves'},
   rock : {scissors: 'crushes', lizard: 'crushes'},
   paper : {rock: 'covers', spock: 'disproves'},
   lizard : {spock: 'poisons', paper: 'eats'},
@@ -7,24 +7,18 @@ const WINNING_COMBOS = {
 };
 
 
-const VALID_CHOICES = ['scissors', 'paper', 'rock', 'lizard', 'spock']
 
-// function to validate user's input //
+
+// function to validate user's input  - word or 1st letter //
 
 // function userChoiceValidation(userChoice) {
-
-//   for (let idx = 0; idx < VALID_CHOICES.length; idx ++) {
-//     if (userChoice === VALID_CHOICES[idx] || userChoice[0] === VALID_CHOICES[idx][0]) {
+// let keys = Object.keys(WINNING_COMBOS);
+//   for (let idx = 0; idx < keys.length ; idx ++) {
+//   if (userChoice === keys[idx] || userChoice[0] === keys[idx][0]) {
 //       return true;
 //     }
-//   } return false;
+//   } return false;  
 // }
-
-// function to generate a random choice for the computer // 
-
-// let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-// let computerChoice = VALID_CHOICES[randomIndex];
-
 
 // userChoice validation // 
 
@@ -33,18 +27,44 @@ const VALID_CHOICES = ['scissors', 'paper', 'rock', 'lizard', 'spock']
 //   userChoice = readline.question()
 // }
 
-// let userChoice = scissors;
+// random choice for the computer // 
 
-let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-let computerChoice = VALID_CHOICES[randomIndex];
+// let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
+// let computerChoice = VALID_CHOICES[randomIndex];
 
-function userWins(userChoice, computerChoice) {
-  return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice);
-}
+// finding out the winner //
+
+// function userWins(userChoice, computerChoice) {
+//   return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice);
+// }
 
 
-function computerWins(userChoice, computerChoice) {
-  return Object.keys(WINNING_COMBOS[computerChoice]).includes(userChoice);
-}
+// function computerWins(userChoice, computerChoice) {
+//   return Object.keys(WINNING_COMBOS[computerChoice]).includes(userChoice);
+// }
 
-console.log(userWins('paper', 'paper'))
+
+// let keys = Object.keys(WINNING_COMBOS);
+
+// for (let i = 0; i < keys.length; i++) {
+//   console.log(keys[0].slice(0,2))
+// }
+
+
+
+function userChoiceValidation(userChoice) {
+let keys = Object.keys(WINNING_COMBOS);
+  for (let idx = 0; idx < keys.length ; idx ++) {
+  if (userChoice === keys[idx] || userChoice.slice(0,2) === keys[idx].slice(0,2));
+      return true;
+    } return false; 
+}  
+
+
+console.log(userChoiceValidation('zzzzzzzz'));
+
+
+// let keys = Object.keys(WINNING_COMBOS);
+// for (let idx = 0; idx < keys.length ; idx ++) {
+// console.log(keys[idx].slice(0,2))
+// }
