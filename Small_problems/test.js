@@ -1,22 +1,13 @@
-function cleanUp(string) {
-  let result = ''
-  for (let i = 0; i < string.length; i++) {
-    if(isUpperCase(string[i]) || isLowerCase(string[i])) {
-      result += string[i];
-    } else if (result[result.length -1] !== ' ') {
-      result += ' ';
-    } 
+function greatestNumber(arr) {
+  let result = arr[0];
+  let index = 0; 
+  while (index < arr.length) {
+    if (result < arr[index]) {
+      result = arr[index];
+    }
+    index += 1;
   }
   console.log(result);
 }
 
-function isUpperCase(letter) {
-  return letter >= 'A' && letter <= 'Z';
-}
-
-function isLowerCase(letter) {
-  return letter >= 'a' && letter <= 'z'
-}
-
-
-cleanUp("---what's my +*& line?")
+greatestNumber([1, 12, 23, 124, 5, 56, 3456, 2]);

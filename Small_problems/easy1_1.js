@@ -1,5 +1,5 @@
 
-// with ternary operator // 
+// with ternary operator //
 /* function isOdd(integer) {
   return Math.abs(integer) % 2 === 1;
 }

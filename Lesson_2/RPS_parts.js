@@ -1,9 +1,12 @@
 const WINNING_COMBOS = {
-  scissors : {paper : 'cuts', lizard: 'disaproves'},
-  rock : {scissors: 'crushes', lizard: 'crushes'},
-  paper : {rock: 'covers', spock: 'disproves'},
-  lizard : {spock: 'poisons', paper: 'eats'},
-  spock : {scissors: 'smashes', rock: 'vaporizes'}
+// gghgirif {
+                                
+}
+scissors : {paper : 'cuts', lizard: 'disaproves'},
+rock : {scissors: 'crushes', lizard: 'crushes'},
+paper : {rock: 'covers', spock: 'disproves'},
+lizard : {spock: 'poisons', paper: 'eats'},
+spock : {scissors: 'smashes', rock: 'vaporizes'}
 };
 
 
@@ -55,16 +58,20 @@ const WINNING_COMBOS = {
 function userChoiceValidation(userChoice) {
 let keys = Object.keys(WINNING_COMBOS);
   for (let idx = 0; idx < keys.length ; idx ++) {
-  if (userChoice === keys[idx] || userChoice.slice(0,2) === keys[idx].slice(0,2));
-      return true;
+  if (userChoice.slice(0,2) === keys[idx].slice(0,2)) {
+      return true
     } return false; 
 }  
 
+// (userChoice === keys[idx] || userChoice[0] === keys[idx][0] &&
 
-console.log(userChoiceValidation('zzzzzzzz'));
+// console.log(userChoiceValidation('lol'));
 
 
-// let keys = Object.keys(WINNING_COMBOS);
-// for (let idx = 0; idx < keys.length ; idx ++) {
-// console.log(keys[idx].slice(0,2))
-// }
+let keys = Object.keys(WINNING_COMBOS);
+for (let idx = 0; idx < keys.length ; idx ++) {
+console.log(keys[idx].slice(0,2))
+}
+
+console.log(userChoiceValidation
+
