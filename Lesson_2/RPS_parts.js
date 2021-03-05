@@ -1,7 +1,4 @@
 const WINNING_COMBOS = {
-// gghgirif {
-                                
-}
 scissors : {paper : 'cuts', lizard: 'disaproves'},
 rock : {scissors: 'crushes', lizard: 'crushes'},
 paper : {rock: 'covers', spock: 'disproves'},
@@ -53,25 +50,17 @@ spock : {scissors: 'smashes', rock: 'vaporizes'}
 //   console.log(keys[0].slice(0,2))
 // }
 
+// eslint-disable-next-line max-len
+// user choice validation - works with full word, first letter or two first letters //
 
-
-function userChoiceValidation(userChoice) {
-let keys = Object.keys(WINNING_COMBOS);
-  for (let idx = 0; idx < keys.length ; idx ++) {
-  if (userChoice.slice(0,2) === keys[idx].slice(0,2)) {
-      return true
-    } return false; 
-}  
-
-// (userChoice === keys[idx] || userChoice[0] === keys[idx][0] &&
-
-// console.log(userChoiceValidation('lol'));
-
-
-let keys = Object.keys(WINNING_COMBOS);
-for (let idx = 0; idx < keys.length ; idx ++) {
-console.log(keys[idx].slice(0,2))
-}
-
-console.log(userChoiceValidation
+// function userChoiceValidation(userChoice) {
+//   let keys = Object.keys(WINNING_COMBOS);
+//   for (let idx = 0; idx < keys.length; idx++) {
+//     if (userChoice === keys[idx] || userChoice[0] === keys[idx][0]
+//         || userChoice.slice(0,2) === keys[idx].slice(0,2)) {
+//       return true;
+//     }
+//   }
+//   return false;
+// }
 

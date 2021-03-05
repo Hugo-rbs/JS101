@@ -14,13 +14,16 @@ function prompt(message) {
 
 
 function userChoiceValidation(userChoice) {
-
-  for (let idx = 0; idx < VALID_CHOICES.length; idx ++) {
-    if (userChoice === VALID_CHOICES[idx] || userChoice[0] === VALID_CHOICES[idx][0]) {
+  let keys = Object.keys(WINNING_COMBOS);
+  for (let idx = 0; idx < keys.length; idx++) {
+    if (userChoice === keys[idx] || userChoice[0] === keys[idx][0]
+        || userChoice.slice(0,2) === keys[idx].slice(0,2)) {
       return true;
     }
-  } return false;
+  }
+  return false;
 }
+
 
 function userWins(userChoice, computerChoice) {
   return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice); 
@@ -41,7 +44,7 @@ function displayWinner(userChoice, computerChoice) {
   }
 }
 
-prompt(`Please choose one: ${VALID_CHOICES.join(', ')} (provide the full word or the first letter)`);
+prompt(`Please choose one: ${Object.keys(WINNING_COMBOS).join(', ')} (provide the full word or the first letter)`);
 let userChoice = readline.question();
 console.clear()
 
@@ -52,11 +55,11 @@ if (userChoice === 's') {
 
 while (!userChoiceValidation(userChoice)) {
   prompt('Please provide a valid choice' );
-  
-  userChoice = readline.question()
+  userChoice = readline.question();
 }
 
-let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
-let computerChoice = VALID_CHOICES[randomIndex];
+// eslint-disable-next-line max-len
+let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
+let computerChoice = Object.keys(WINNING_COMBOS[randomIndex]);
 
 displayWinner(userChoice, computerChoice);
