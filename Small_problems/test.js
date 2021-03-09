@@ -1,24 +1,9 @@
-let objToCopy = {
-  foo: 1,
-  bar: 2,
-  qux: 3,
+let obj = {
+  foo: { a: "hello", b: "world" },
+  bar: ["example", "mem", null, { xyz: 6 }, 88],
+  qux: [4, 8, 12]
 };
 
-let newObj = copyObj(objToCopy);
-console.log(newObj);        // => { foo: 1, bar: 2, qux: 3 }
-
-let newObj2 = copyObj(objToCopy, [ 'foo', 'qux' ]);
-console.log(newObj2);       // => { foo: 1, qux: 3 }
-
-let newObj3 = copyObj(objToCopy, [ 'bar' ]);
-console.log(newObj3);       // => { bar: 2 }
-
-function copyObj(obj, keys) {
-  let result = {};
-  if (keys) {
-    keys.forEach(keys => result[keys] = obj[keys]);
-  } else {
-    result = Object.assign(obj, result);
-  }
-  return result;
-}
+obj.foo.b = 'not';
+obj.bar[3]['xyz'] = 606;
+console.log(obj);

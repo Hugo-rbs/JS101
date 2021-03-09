@@ -64,3 +64,23 @@ spock : {scissors: 'smashes', rock: 'vaporizes'}
 //   return false;
 // }
 
+function userChoice(userInput) {
+  let userChoice = '';
+  let keys = Object.keys(WINNING_COMBOS);
+  for (let idx = 0; idx < keys.length; idx++) {
+    if (userInput === keys[idx]) {
+      userChoice = userInput;
+    } else if (userInput === keys[idx][0]) {
+      userChoice = userInput + keys[idx].slice(1);
+    } else if (userInput === keys[idx].slice(0,2)) {
+      userChoice = userInput + keys[idx].slice(2);
+    }
+  }
+  return userChoice;
+}
+
+// console.log(userChoice('sc'));
+
+function userWin (userChoice, computerChoice) {
+  if usercChoice()
+}

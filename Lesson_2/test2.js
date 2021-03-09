@@ -5,8 +5,10 @@ const WINNING_COMBOS = {
   lizard : {spock: 'poisons', paper: 'eats'},
   spock : {scissors: 'smashes', rock: 'vaporizes'}
 };
-let test2 = 'spock';
-let test = Object.keys(WINNING_COMBOS);
 
-console.log(test.includes(test2));
+let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
+let computerChoice = Object.keys(WINNING_COMBOS)[randomIndex];
 
+console.log(computerChoice);
+
+console.log(randomIndex);

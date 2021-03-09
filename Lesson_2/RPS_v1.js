@@ -26,7 +26,7 @@ function userChoiceValidation(userChoice) {
 
 
 function userWins(userChoice, computerChoice) {
-  return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice); 
+  return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice);
 }
 
 function computerWins(userChoice, computerChoice) {
@@ -46,7 +46,7 @@ function displayWinner(userChoice, computerChoice) {
 
 prompt(`Please choose one: ${Object.keys(WINNING_COMBOS).join(', ')} (provide the full word or the first letter)`);
 let userChoice = readline.question();
-console.clear()
+console.clear();
 
 if (userChoice === 's') {
   prompt('Did you mean scissors or spock? Please type your anwser');
@@ -60,6 +60,6 @@ while (!userChoiceValidation(userChoice)) {
 
 // eslint-disable-next-line max-len
 let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
-let computerChoice = Object.keys(WINNING_COMBOS[randomIndex]);
+let computerChoice = Object.keys(WINNING_COMBOS)[randomIndex];
 
 displayWinner(userChoice, computerChoice);
