@@ -1,9 +1,12 @@
-let obj = {
-  foo: { a: "hello", b: "world" },
-  bar: ["example", "mem", null, { xyz: 6 }, 88],
-  qux: [4, 8, 12]
-};
+function oddLengths(array) {
+let oddArray = array.reduce((oddArr, element) => {
+    let length = element.length;
+    if (length % 2 === 1) {
+    oddArr.push(length);
+    }
+  return oddArr;
+}, []);
+  console.log(oddArray);
+}
 
-obj.foo.b = 'not';
-obj.bar[3]['xyz'] = 606;
-console.log(obj);
+oddLengths(['a', 'abcd', 'abcde', 'abc', 'ab']);

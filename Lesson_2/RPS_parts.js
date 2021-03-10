@@ -1,12 +1,16 @@
+const readline = require('readline-sync');
+
 const WINNING_COMBOS = {
-scissors : {paper : 'cuts', lizard: 'disaproves'},
-rock : {scissors: 'crushes', lizard: 'crushes'},
-paper : {rock: 'covers', spock: 'disproves'},
-lizard : {spock: 'poisons', paper: 'eats'},
-spock : {scissors: 'smashes', rock: 'vaporizes'}
+  scissors : {paper : 'cuts', lizard: 'disaproves'},
+  rock : {scissors: 'crushes', lizard: 'crushes'},
+  paper : {rock: 'covers', spock: 'disproves'},
+  lizard : {spock: 'poisons', paper: 'eats'},
+  spock : {scissors: 'smashes', rock: 'vaporizes'}
 };
 
-
+function prompt(message) {
+  console.log(`=> ${message}`);
+}
 
 
 // function to validate user's input  - word or 1st letter //
@@ -17,17 +21,17 @@ spock : {scissors: 'smashes', rock: 'vaporizes'}
 //   if (userChoice === keys[idx] || userChoice[0] === keys[idx][0]) {
 //       return true;
 //     }
-//   } return false;  
+//   } return false;
 // }
 
-// userChoice validation // 
+// userChoice validation //
 
 // while (!userChoiceValidation(userChoice)) {
 //   prompt('Please provide a valid choice' );
 //   userChoice = readline.question()
 // }
 
-// random choice for the computer // 
+// random choice for the computer //
 
 // let randomIndex = Math.floor(Math.random() * VALID_CHOICES.length);
 // let computerChoice = VALID_CHOICES[randomIndex];
@@ -64,23 +68,54 @@ spock : {scissors: 'smashes', rock: 'vaporizes'}
 //   return false;
 // }
 
-function userChoice(userInput) {
+// function userChoice(userInput) {
+//   let userChoice = '';
+//   let keys = Object.keys(WINNING_COMBOS);
+//   for (let idx = 0; idx < keys.length; idx++) {
+//     if (userInput === keys[idx]) {
+//       userChoice = userInput;
+//     } else if (userInput === keys[idx][0]) {
+//       userChoice = userInput + keys[idx].slice(1);
+//     } else if (userInput === keys[idx].slice(0,2)) {
+//       userChoice = userInput + keys[idx].slice(2);
+//     }
+//   }
+//   return userChoice;
+// }
+
+// console.log(userChoice('sc'));
+
+// eslint-disable-next-line max-lines-per-function
+
+let userInput = 's';
+
+function userInputConversion(userInput) {
   let userChoice = '';
   let keys = Object.keys(WINNING_COMBOS);
   for (let idx = 0; idx < keys.length; idx++) {
     if (userInput === keys[idx]) {
       userChoice = userInput;
+    } else if (userInput === 's') {
+      prompt('Please type "sc" for scissors, "sp" for spock');
+      userInput = readline.question();
+      console.clear();
+      userChoice = userInputConversion(userInput);
     } else if (userInput === keys[idx][0]) {
       userChoice = userInput + keys[idx].slice(1);
-    } else if (userInput === keys[idx].slice(0,2)) {
+    } else if (userInput === keys[idx].slice(0, 2)) {
       userChoice = userInput + keys[idx].slice(2);
     }
   }
   return userChoice;
 }
 
-// console.log(userChoice('sc'));
-
-function userWin (userChoice, computerChoice) {
-  if usercChoice()
+function userInputVerification() {
+  if (userInputConversion(userInput)) {
+    console.log(true);
+  } else {
+    console.log(false);
+  }
 }
+
+console.log(userInputConversion(userInput))
+userInputVerification();
