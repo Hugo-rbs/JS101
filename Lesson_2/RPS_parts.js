@@ -87,20 +87,20 @@ function prompt(message) {
 
 // eslint-disable-next-line max-lines-per-function
 
-let userInput = 's';
+prompt('Please make a choice:');
+let userInput = readline.question().toLowerCase();
 
 function userInputConversion(userInput) {
   let userChoice = '';
   let keys = Object.keys(WINNING_COMBOS);
   for (let idx = 0; idx < keys.length; idx++) {
-    if (userInput === keys[idx]) {
+    if (userInput === 's') {
+      console.log('=> Please type "sc" for scissors, "sp" for spock');
+      userInput = readline.question().toLowerCase();
+      userChoice = userInput + keys[idx].slice(2);
+    } else if (userInput === keys[idx]) {
       userChoice = userInput;
-    } else if (userInput === 's') {
-      prompt('Please type "sc" for scissors, "sp" for spock');
-      userInput = readline.question();
-      console.clear();
-      userChoice = userInputConversion(userInput);
-    } else if (userInput === keys[idx][0]) {
+    }  else if (userInput === keys[idx][0]) {
       userChoice = userInput + keys[idx].slice(1);
     } else if (userInput === keys[idx].slice(0, 2)) {
       userChoice = userInput + keys[idx].slice(2);
@@ -109,13 +109,12 @@ function userInputConversion(userInput) {
   return userChoice;
 }
 
+
 function userInputVerification() {
-  if (userInputConversion(userInput)) {
-    console.log(true);
-  } else {
-    console.log(false);
-  }
+  return !!userInputConversion(userInput);
 }
 
-console.log(userInputConversion(userInput))
-userInputVerification();
+while (!userInputVerification()) {
+  prompt('Please provide a valid choice.');
+  userInput = readline.question();
+}
