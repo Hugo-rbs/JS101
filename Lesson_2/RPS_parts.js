@@ -8,6 +8,8 @@ const WINNING_COMBOS = {
   spock : {scissors: 'smashes', rock: 'vaporizes'}
 };
 
+const WINNING_SCORE = 5;
+
 function prompt(message) {
   console.log(`=> ${message}`);
 }
@@ -87,34 +89,96 @@ function prompt(message) {
 
 // eslint-disable-next-line max-lines-per-function
 
-prompt('Please make a choice:');
-let userInput = readline.question().toLowerCase();
+// prompt('Please make a choice:');
+// let userInput = readline.question().toLowerCase();
 
-function userInputConversion(userInput) {
-  let userChoice = '';
-  let keys = Object.keys(WINNING_COMBOS);
-  for (let idx = 0; idx < keys.length; idx++) {
-    if (userInput === 's') {
-      console.log('=> Please type "sc" for scissors, "sp" for spock');
-      userInput = readline.question().toLowerCase();
-      userChoice = userInput + keys[idx].slice(2);
-    } else if (userInput === keys[idx]) {
-      userChoice = userInput;
-    }  else if (userInput === keys[idx][0]) {
-      userChoice = userInput + keys[idx].slice(1);
-    } else if (userInput === keys[idx].slice(0, 2)) {
-      userChoice = userInput + keys[idx].slice(2);
+// function userInputConversion(userInput) {
+//   let userChoice = '';
+//   let keys = Object.keys(WINNING_COMBOS);
+//   for (let idx = 0; idx < keys.length; idx++) {
+//     if (userInput === 's') {
+//       console.log('=> Please type "sc" for scissors, "sp" for spock');
+//       userInput = readline.question().toLowerCase();
+//       userChoice = userInput + keys[idx].slice(2);
+//     } else if (userInput === keys[idx]) {
+//       userChoice = userInput;
+//     }  else if (userInput === keys[idx][0]) {
+//       userChoice = userInput + keys[idx].slice(1);
+//     } else if (userInput === keys[idx].slice(0, 2)) {
+//       userChoice = userInput + keys[idx].slice(2);
+//     }
+//   }
+//   return userChoice;
+// }
+
+
+// function userInputVerification(userInput) {
+//   if (userInputConversion(userInput)) {
+//     return true;
+//   } prompt('Please provide a valid choice.');
+//   userInput = readline.question();
+// }
+
+// while (!userInputVerification()) {
+//   prompt('Please provide a valid choice.');
+//   userInput = readline.question();
+// }
+
+// function display winner with the socre incrementation added //
+
+// function displayWinner(userChoice, computerChoice) {
+//   prompt(`You choose: ${userChoice}, computer choose: ${computerChoice}`);
+//   if (userWins(userChoice, computerChoice)) {
+//     prompt('You win!');
+//     currentScore(1);
+//   } else if (computerWins(userChoice, computerChoice)) {
+//     prompt('Computer wins!');
+//     currentScore(0);
+//   } else {
+//     prompt("It's a tie");
+//   }
+// }
+
+
+let playerScore = 5;
+let computerScore = 0;
+
+// function currentScore(score) {
+//   if (score) {
+//     userScore += 1;
+//   } else {
+//     computerScore += 1;
+//   }
+// }
+
+function grandWinner(player1, player2) {
+  if (player1 === WINNING_SCORE || player2 === WINNING_SCORE) {
+    return true;
+  } return false
+}
+
+// currentScore(0);
+
+// console.log(`User score: ${userScore} - Computer score: ${computerScore}`);
+
+// while (!grandWinner(playerScore, computerScore)) {
+
+
+// }
+
+// grandWinner(player1, player2)
+
+
+function bestOfFive (player1, player2) {
+  return player1 ===  WINNING_SCORE || player2 === WINNING_SCORE;
+}
+
+function displayGrandWinner() {
+  while (bestOfFive()) {
+    if (playerScore > computerScore) {
+      console.log('You win!');
+    } else {
+      console.log('computer wins');
     }
   }
-  return userChoice;
-}
-
-
-function userInputVerification() {
-  return !!userInputConversion(userInput);
-}
-
-while (!userInputVerification()) {
-  prompt('Please provide a valid choice.');
-  userInput = readline.question();
 }

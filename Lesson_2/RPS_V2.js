@@ -1,4 +1,5 @@
-/* eslint-disable max-len */
+//DO NOT CHANGE // Includes functioning bonus features 1 & 2 //
+
 const readline = require('readline-sync');
 const WINNING_COMBOS = {
   scissors : {paper : 'cuts', lizard: 'disaproves'},
@@ -16,6 +17,26 @@ let computerScore = 0;
 
 function prompt(message) {
   console.log(`=> ${message}`);
+}
+
+function userInputConversion(Input) {
+  let keys = Object.keys(WINNING_COMBOS);
+  let verifiedInput = '';
+  for (let idx = 0; idx < keys.length; idx++) {
+    if (Input === 's') {
+      console.log('=> Please type "sc" for scissors, "sp" for spock');
+      Input = readline.question().toLowerCase();
+      console.clear();
+      verifiedInput = Input + keys[idx].slice(2);
+    } else if (Input === keys[idx]) {
+      verifiedInput = Input;
+    }  else if (Input === keys[idx][0]) {
+      verifiedInput = Input + keys[idx].slice(1);
+    } else if (Input === keys[idx].slice(0, 2)) {
+      verifiedInput = Input + keys[idx].slice(2);
+    }
+  }
+  return verifiedInput;
 }
 
 function userWins(userChoice, computerChoice) {
@@ -51,37 +72,30 @@ function displayScore() {
   console.log(`Player score: ${playerScore} | Computer score: ${computerScore}`);
 }
 
-function grandWinner(player1, player2) {
-  if (player1 === WINNING_SCORE) {
-    console.log('You win the game!');
-  } else if (player2 === WINNING_SCORE) {
-    console.log(`The computer wins the game`);
+function bestOfFive () {
+  return playerScore ===  WINNING_SCORE || computerScore === WINNING_SCORE;
+}
+
+function displayGrandWinner() {
+  while (bestOfFive()) {
+    if (playerScore > computerScore) {
+      console.log('You win the game!');
+      break;
+    } else {
+      console.log('computer wins the game');
+      break;
+    }
   }
 }
 
-function userInputConversion(Input) {
-  let keys = Object.keys(WINNING_COMBOS);
-  let verifiedInput = '';
-  for (let idx = 0; idx < keys.length; idx++) {
-    if (Input === 's') {
-      console.log('=> Please type "sc" for scissors, "sp" for spock');
-      Input = readline.question().toLowerCase();
-      console.clear();
-      verifiedInput = Input + keys[idx].slice(2);
-    } else if (Input === keys[idx]) {
-      verifiedInput = Input;
-    }  else if (Input === keys[idx][0]) {
-      verifiedInput = Input + keys[idx].slice(1);
-    } else if (Input === keys[idx].slice(0, 2)) {
-      verifiedInput = Input + keys[idx].slice(2);
-    }
-  }
-  return verifiedInput;
+function resetScore() {
+  playerScore = 0;
+  computerScore = 0;
 }
 
 // code //
 
-while (!grandWinner(playerScore, computerScore)) {
+while (true) {
   prompt(`Please choose one: ${Object.keys(WINNING_COMBOS).join(', ')} (provide the full word or the first letter)`);
   let userChoice = userInputConversion(readline.question().toLowerCase());
   console.clear();
@@ -98,7 +112,19 @@ while (!grandWinner(playerScore, computerScore)) {
 
   displayWinner(userChoice, computerChoice);
   displayScore();
-}
-console.clear();
+  displayGrandWinner();
 
-grandWinner(playerScore, computerScore);
+  if (bestOfFive()) {
+    prompt('Would you like to play another round? (y/n)');
+    let answer = readline.question().toLowerCase();
+
+    while (answer[0] !== 'n' && answer[0] !== 'y') {
+      prompt('Please enter "y" or "n".');
+      answer = readline.question().toLocaleLowerCase();
+    }
+    if (answer[0] !== 'y') break;
+
+    resetScore();
+    console.clear();
+  }
+}

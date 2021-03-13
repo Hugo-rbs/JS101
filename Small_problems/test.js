@@ -1,12 +1,13 @@
 function oddLengths(array) {
-let oddArray = array.reduce((oddArr, element) => {
+  return array.reduce((numbersArr, element) => {
     let length = element.length;
-    if (length % 2 === 1) {
-    oddArr.push(length);
+    if (length % 2 ===  1) {
+      numbersArr.push(length);
     }
-  return oddArr;
-}, []);
-  console.log(oddArray);
+    return numbersArr;
+  }, []);
 }
 
-oddLengths(['a', 'abcd', 'abcde', 'abc', 'ab']);
+console.log(oddLengths(['a', 'abcd', 'abcde', 'abc', 'ab']));
+
+
