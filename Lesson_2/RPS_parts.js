@@ -1,14 +1,14 @@
 const readline = require('readline-sync');
 
-const WINNING_COMBOS = {
-  scissors : {paper : 'cuts', lizard: 'disaproves'},
-  rock : {scissors: 'crushes', lizard: 'crushes'},
-  paper : {rock: 'covers', spock: 'disproves'},
-  lizard : {spock: 'poisons', paper: 'eats'},
-  spock : {scissors: 'smashes', rock: 'vaporizes'}
-};
+// const WINNING_COMBOS = {
+//   scissors : {paper : 'cuts', lizard: 'disaproves'},
+//   rock : {scissors: 'crushes', lizard: 'crushes'},
+//   paper : {rock: 'covers', spock: 'disproves'},
+//   lizard : {spock: 'poisons', paper: 'eats'},
+//   spock : {scissors: 'smashes', rock: 'vaporizes'}
+// };
 
-const WINNING_SCORE = 5;
+// const WINNING_SCORE = 5;
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -140,8 +140,8 @@ function prompt(message) {
 // }
 
 
-let playerScore = 5;
-let computerScore = 0;
+// let playerScore = 5;
+// let computerScore = 0;
 
 // function currentScore(score) {
 //   if (score) {
@@ -151,11 +151,11 @@ let computerScore = 0;
 //   }
 // }
 
-function grandWinner(player1, player2) {
-  if (player1 === WINNING_SCORE || player2 === WINNING_SCORE) {
-    return true;
-  } return false
-}
+// function grandWinner(player1, player2) {
+//   if (player1 === WINNING_SCORE || player2 === WINNING_SCORE) {
+//     return true;
+//   } return false
+// }
 
 // currentScore(0);
 
@@ -169,16 +169,38 @@ function grandWinner(player1, player2) {
 // grandWinner(player1, player2)
 
 
-function bestOfFive (player1, player2) {
-  return player1 ===  WINNING_SCORE || player2 === WINNING_SCORE;
+// function bestOfFive (player1, player2) {
+//   return player1 ===  WINNING_SCORE || player2 === WINNING_SCORE;
+// }
+
+// function displayGrandWinner() {
+//   while (bestOfFive()) {
+//     if (playerScore > computerScore) {
+//       console.log('You win!');
+//     } else {
+//       console.log('computer wins');
+//     }
+//   }
+// }
+
+function rpsWelcome() {
+  let welcomeMessage = 'Welcome to the Rock Paper Scissors game!';
+  let horizontalRule = `+${'-'.repeat(welcomeMessage.length + 2)}+`;
+  let verticalRule = `|${' '.repeat(welcomeMessage.length + 2)}|`;
+  console.log(horizontalRule);
+  console.log(verticalRule);
+  console.log(`| ${welcomeMessage} |`);
+  console.log(verticalRule);
+  console.log(horizontalRule);
 }
 
-function displayGrandWinner() {
-  while (bestOfFive()) {
-    if (playerScore > computerScore) {
-      console.log('You win!');
-    } else {
-      console.log('computer wins');
-    }
+while (true) {
+  rpsWelcome();
+
+  prompt('Press any key to start the game, x to exit');
+  let start = readline.question().toLowerCase();
+
+  if (start === 'x') {
+    break;
   }
 }

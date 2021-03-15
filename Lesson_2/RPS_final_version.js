@@ -12,10 +12,19 @@ const WINNING_SCORE = 5;
 let playerScore = 0;
 let computerScore = 0;
 
-// functions //
-
 function prompt(message) {
   console.log(`=> ${message}`);
+}
+
+function rpsWelcome() {
+  let welcomeMessage = 'Welcome to the Rock Paper Scissors game!';
+  let horizontalRule = `+${'-'.repeat(welcomeMessage.length + 2)}+`;
+  let verticalRule = `|${' '.repeat(welcomeMessage.length + 2)}|`;
+  console.log(horizontalRule);
+  console.log(verticalRule);
+  console.log(`| ${welcomeMessage} |`);
+  console.log(verticalRule);
+  console.log(horizontalRule);
 }
 
 function userInputConversion(Input) {
@@ -92,39 +101,46 @@ function resetScore() {
   computerScore = 0;
 }
 
-// code //
 
-while (true) {
-  prompt(`Please choose one: ${Object.keys(WINNING_COMBOS).join(', ')} (provide the full word or the first letter)`);
-  let userChoice = userInputConversion(readline.question().toLowerCase());
+rpsWelcome();
+prompt('Press any key to start the game, x to exit');
+let start = readline.question().toLowerCase();
+
+
+while (start !== 'x') {
   console.clear();
-
-
-  while (!Object.keys(WINNING_COMBOS).includes(userChoice)) {
-    prompt("Please provide a valid choice");
-    userChoice = userInputConversion(readline.question().toLowerCase());
-  }
-
-  // eslint-disable-next-line max-len
-  let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
-  let computerChoice = Object.keys(WINNING_COMBOS)[randomIndex];
-
-  displayWinner(userChoice, computerChoice);
-  displayScore();
-  displayGrandWinner();
-
-  if (bestOfFive()) {
-    prompt('Would you like to play another round? (y/n)');
-    let answer = readline.question().toLowerCase();
-
-    while (answer[0] !== 'n' && answer[0] !== 'y') {
-      prompt('Please enter "y" or "n".');
-      answer = readline.question().toLocaleLowerCase();
-    }
-    if (answer[0] !== 'y') {
-      break;
-    }
-    resetScore();
+  while (true) {
+    prompt(`Please choose one: ${Object.keys(WINNING_COMBOS).join(', ')} (provide the full word or the first letter)`);
+    let userChoice = userInputConversion(readline.question().toLowerCase());
     console.clear();
+
+
+    while (!Object.keys(WINNING_COMBOS).includes(userChoice)) {
+      prompt("Please provide a valid choice");
+      userChoice = userInputConversion(readline.question().toLowerCase());
+    }
+
+    // eslint-disable-next-line max-len
+    let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
+    let computerChoice = Object.keys(WINNING_COMBOS)[randomIndex];
+
+    displayWinner(userChoice, computerChoice);
+    displayScore();
+    displayGrandWinner();
+
+    if (bestOfFive()) {
+      prompt('Would you like to play another round? (y/n)');
+      let answer = readline.question().toLowerCase();
+
+      while (answer[0] !== 'n' && answer[0] !== 'y') {
+        prompt('Please enter "y" or "n".');
+        answer = readline.question().toLocaleLowerCase();
+      }
+      if (answer[0] !== 'y') break;
+
+      resetScore();
+      console.clear();
+    }
   }
+  if (start === 'x') break;
 }
