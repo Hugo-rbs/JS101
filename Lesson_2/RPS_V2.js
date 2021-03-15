@@ -12,10 +12,19 @@ const WINNING_SCORE = 5;
 let playerScore = 0;
 let computerScore = 0;
 
-// functions //
-
 function prompt(message) {
   console.log(`=> ${message}`);
+}
+
+function rpsWelcome() {
+  let welcomeMessage = 'Welcome to the Rock Paper Scissors game!';
+  let horizontalRule = `+${'-'.repeat(welcomeMessage.length + 2)}+`;
+  let verticalRule = `|${' '.repeat(welcomeMessage.length + 2)}|`;
+  console.log(horizontalRule);
+  console.log(verticalRule);
+  console.log(`| ${welcomeMessage} |`);
+  console.log(verticalRule);
+  console.log(horizontalRule);
 }
 
 function userInputConversion(Input) {
@@ -92,7 +101,7 @@ function resetScore() {
   computerScore = 0;
 }
 
-// code //
+rpsWelcome();
 
 while (true) {
   prompt(`Please choose one: ${Object.keys(WINNING_COMBOS).join(', ')} (provide the full word or the first letter)`);
@@ -121,9 +130,8 @@ while (true) {
       prompt('Please enter "y" or "n".');
       answer = readline.question().toLocaleLowerCase();
     }
-    if (answer[0] !== 'y') {
-      break;
-    }
+    if (answer[0] !== 'y') break;
+
     resetScore();
     console.clear();
   }
