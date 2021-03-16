@@ -9,8 +9,7 @@ const WINNING_COMBOS = {
 };
 const WINNING_SCORE = 5;
 
-let playerScore = 0;
-let computerScore = 0;
+let score = {player: 0, computer: 0};
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -25,6 +24,7 @@ function rpsWelcome() {
   console.log(`| ${welcomeMessage} |`);
   console.log(verticalRule);
   console.log(horizontalRule);
+  console.log(`(Best of five wins the game)`);
 }
 
 function userInputConversion(Input) {
@@ -47,6 +47,12 @@ function userInputConversion(Input) {
   return verifiedInput;
 }
 
+function getComputerChoice() {
+  // eslint-disable-next-line max-len
+  let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
+  return Object.keys(WINNING_COMBOS)[randomIndex];
+}
+
 function userWins(userChoice, computerChoice) {
   return Object.keys(WINNING_COMBOS[userChoice]).includes(computerChoice);
 }
@@ -59,34 +65,34 @@ function displayWinner(userChoice, computerChoice) {
   prompt(`You choose: ${userChoice}, computer choose: ${computerChoice}`);
   if (userWins(userChoice, computerChoice)) {
     prompt('You win!');
-    currentScore(1);
+    currentScore(true);
   } else if (computerWins(userChoice, computerChoice)) {
     prompt('Computer wins!');
-    currentScore(0);
+    currentScore(false);
   } else {
     prompt("It's a tie");
   }
 }
 
-function currentScore(score) {
-  if (score) {
-    playerScore += 1;
+function currentScore(roundScore) {
+  if (roundScore) {
+    score.player += 1;
   } else {
-    computerScore += 1;
+    score.computer += 1;
   }
 }
 
 function displayScore() {
-  console.log(`Player score: ${playerScore} | Computer score: ${computerScore}`);
+  console.log(`Player score: ${score.player} | Computer score: ${score.computer}`);
 }
 
 function bestOfFive () {
-  return playerScore ===  WINNING_SCORE || computerScore === WINNING_SCORE;
+  return score.player ===  WINNING_SCORE || score.computer === WINNING_SCORE;
 }
 
 function displayGrandWinner() {
   while (bestOfFive()) {
-    if (playerScore > computerScore) {
+    if (score.player > score.computer) {
       console.log('You win the game!');
       break;
     } else {
@@ -97,8 +103,8 @@ function displayGrandWinner() {
 }
 
 function resetScore() {
-  playerScore = 0;
-  computerScore = 0;
+  score.player = 0;
+  score.computer = 0;
 }
 
 rpsWelcome();
@@ -114,9 +120,7 @@ while (true) {
     userChoice = userInputConversion(readline.question().toLowerCase());
   }
 
-  // eslint-disable-next-line max-len
-  let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
-  let computerChoice = Object.keys(WINNING_COMBOS)[randomIndex];
+  let computerChoice = getComputerChoice();
 
   displayWinner(userChoice, computerChoice);
   displayScore();

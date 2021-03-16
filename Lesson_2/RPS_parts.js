@@ -1,12 +1,12 @@
 const readline = require('readline-sync');
 
-// const WINNING_COMBOS = {
-//   scissors : {paper : 'cuts', lizard: 'disaproves'},
-//   rock : {scissors: 'crushes', lizard: 'crushes'},
-//   paper : {rock: 'covers', spock: 'disproves'},
-//   lizard : {spock: 'poisons', paper: 'eats'},
-//   spock : {scissors: 'smashes', rock: 'vaporizes'}
-// };
+const WINNING_COMBOS = {
+  scissors : {paper : 'cuts', lizard: 'disaproves'},
+  rock : {scissors: 'crushes', lizard: 'crushes'},
+  paper : {rock: 'covers', spock: 'disproves'},
+  lizard : {spock: 'poisons', paper: 'eats'},
+  spock : {scissors: 'smashes', rock: 'vaporizes'}
+};
 
 // const WINNING_SCORE = 5;
 
@@ -183,24 +183,33 @@ function prompt(message) {
 //   }
 // }
 
-function rpsWelcome() {
-  let welcomeMessage = 'Welcome to the Rock Paper Scissors game!';
-  let horizontalRule = `+${'-'.repeat(welcomeMessage.length + 2)}+`;
-  let verticalRule = `|${' '.repeat(welcomeMessage.length + 2)}|`;
-  console.log(horizontalRule);
-  console.log(verticalRule);
-  console.log(`| ${welcomeMessage} |`);
-  console.log(verticalRule);
-  console.log(horizontalRule);
-}
+// function rpsWelcome() {
+//   let welcomeMessage = 'Welcome to the Rock Paper Scissors game!';
+//   let horizontalRule = `+${'-'.repeat(welcomeMessage.length + 2)}+`;
+//   let verticalRule = `|${' '.repeat(welcomeMessage.length + 2)}|`;
+//   console.log(horizontalRule);
+//   console.log(verticalRule);
+//   console.log(`| ${welcomeMessage} |`);
+//   console.log(verticalRule);
+//   console.log(horizontalRule);
+// }
 
-while (true) {
-  rpsWelcome();
+// while (true) {
+//   rpsWelcome();
 
-  prompt('Press any key to start the game, x to exit');
-  let start = readline.question().toLowerCase();
+//   prompt('Press any key to start the game, x to exit');
+//   let start = readline.question().toLowerCase();
 
-  if (start === 'x') {
-    break;
-  }
-}
+//   if (start === 'x') {
+//     break;
+//   }
+// }
+
+
+let computerChoice = function() {
+  let randomIndex = Math.floor(Math.random() * Object.keys(WINNING_COMBOS).length);
+  return Object.keys(WINNING_COMBOS)[randomIndex];
+};
+
+console.log(computerChoice());
+
