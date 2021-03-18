@@ -1,5 +1,9 @@
-function foo(obj) {
-  return "def";
+let array = [1, 2, 3];
+function bar(array) {
+  return array = [4, 3, 5];
 }
 
-console.log(foo({ qux: "xyzzy" }));
+
+let newArray = bar(array);
+console.log(array); 
+console.log(newArray);
