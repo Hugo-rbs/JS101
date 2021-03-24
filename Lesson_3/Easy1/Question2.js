@@ -10,7 +10,7 @@ let str2 = "What's up, Doc?"; // false
 // }
 
 function exclamation(string) {
-  return string.endsWith('!')
+  return string.endsWith('!');
 }
 console.log(exclamation(str1));
 console.log(exclamation(str2));
