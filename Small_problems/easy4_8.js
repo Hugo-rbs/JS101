@@ -1,9 +1,17 @@
 function wordSizes(string) {
-  let wordsLength = string.split(' ').map(word => word.length);
-  let obj = {};
-  for (let idx = 0; idx < wordsLength.length; idx++) {
-
+  let result = {};
+  let arrayOfWords = string.split(' ');
+  for (let idx = 0; idx < arrayOfWords.length; idx++) {
+    let wordLength = arrayOfWords[idx].length;
+    if (wordLength === 0) {
+      continue;
+    }
+    if (!result[wordLength]) {
+      result[wordLength] = 0;
+    }
+    result[wordLength] += 1;
   }
-  }
+  return result;
+}
 
-wordSizes('Hey diddle diddle, the cat and the fiddle!');
+console.log(wordSizes('hello hello hello what is up? y"all'));

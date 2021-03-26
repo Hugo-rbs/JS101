@@ -1,16 +1,17 @@
-function clone(obj) {
-let newObj = Object.assign({}, obj);
-return newObj;
+function wordSizes(string) {
+  let result = {};
+  let arrayOfWords = string.split(' ');
+  for (let idx = 0; idx < arrayOfWords.length; idx++) {
+    let wordLength = arrayOfWords[idx].length;
+    if (wordLength === 0) {
+      continue;
+    }
+    if (!result[wordLength]) {
+      result[wordLength] = 0;
+    }
+    result[wordLength] += 1;
+  }
+  return result;
 }
 
-let person = {
-  title: 'Duke',
-  name: 'Nukem',
-  age: 33
-};
-
-let clonedPerson = clone(person);
-person.age = 34;
-
-console.log(person.age);       // 34
-console.log(clonedPerson.age); // 33
+console.log(wordSizes('hello hello hello what is up? y"all'));
