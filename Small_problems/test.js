@@ -1,9 +1,16 @@
-let array = [1, 2, 3];
-function bar(array) {
-  return array = [4, 3, 5];
+function clone(obj) {
+let newObj = Object.assign({}, obj);
+return newObj;
 }
 
+let person = {
+  title: 'Duke',
+  name: 'Nukem',
+  age: 33
+};
 
-let newArray = bar(array);
-console.log(array); 
-console.log(newArray);
+let clonedPerson = clone(person);
+person.age = 34;
+
+console.log(person.age);       // 34
+console.log(clonedPerson.age); // 33

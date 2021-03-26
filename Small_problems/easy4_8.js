@@ -1,12 +1,9 @@
-// function wordSizes(string) {
-//   let arrayOfWords = string.split(' ');
-//   let wordsLength = [];
-//   let obj = {}
-//   for (let idx = 0; idx < arrayOfWords.length; idx++) {
-//     wordsLength.push(arrayOfWords[idx].length);
-//   }
-//   obj = Object.keys(wordsLength);
-//   console.log(obj);
-// }
+function wordSizes(string) {
+  let wordsLength = string.split(' ').map(word => word.length);
+  let obj = {};
+  for (let idx = 0; idx < wordsLength.length; idx++) {
 
-// wordSizes('Four score and seven.')
+  }
+  }
+
+wordSizes('Hey diddle diddle, the cat and the fiddle!');

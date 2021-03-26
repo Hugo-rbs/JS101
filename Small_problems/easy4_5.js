@@ -1,29 +1,28 @@
-function isRealPalindrome(string) {
-  let stringToLowerCase = string.toLowerCase();
+function removeNonLetternumbers(string) {
   let alphaNumericString = '';
-  for (let idx = 0; idx < stringToLowerCase.length; idx++) {
-    if (isNumber(stringToLowerCase[idx]) || isUpperCase(stringToLowerCase[idx]) || isLowerCase(stringToLowerCase[idx])) {
-      alphaNumericString += stringToLowerCase[idx];
+  for (let idx = 0; idx < string.length; idx++) {
+    if (isNumber(string[idx]) || isLetter(string[idx])) {
+      alphaNumericString += string[idx];
     }
   }
-  // return isPalindrome(alphaNumericString);
-  console.log(alphaNumericString);
+  return alphaNumericString;
 }
 
 function isNumber(character) {
-  return character >= 0 || character <= 10;
+  return character >= 0 || character <= 9;
 }
 
-function isUpperCase(letter) {
-  return letter >= 'A' && letter <= 'Z';
-}
-
-function isLowerCase(letter) {
-  return letter >= 'a' && letter <= 'z';
+function isLetter(character) {
+  return character >= 'a' && character <= 'z';
 }
 
 function isPalindrome(string) {
-  return string.split('').reverse().join("").toLowerCase();
+  return string === string.split('').reverse().join("");
+}
+
+function isRealPalindrome(string) {
+  string = removeNonLetternumbers(string.toLowerCase());
+  return isPalindrome(string);
 }
 
 // isRealPalindrome('madam');               // true
