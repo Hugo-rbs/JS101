@@ -31,3 +31,30 @@ console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumeric
 // isRealPalindrome('356653');              // true
 // isRealPalindrome('356a653');             // true
 // isRealPalindrome('123ab321');            // false
+
+/*
+3/29 work in progress 
+
+// function isPalindrome(string) {
+//   return string.split('').reverse().join('') === string;
+// }
+
+// console.log(isPalindrome('madam'));
+// console.log(isPalindrome('Madam'));
+// console.log(isPalindrome("madam i'm adam"));
+// console.log(isPalindrome('356653'));
+
+function test(string) {
+  string = string.toLowerCase();
+  let cleanString = [];
+  for (let idx = 0; idx < string.length; idx++) {
+    if ((string[idx] >= 0 && string[idx] <= 9) || (string[idx] >= 'a' && string[idx] <= 'z')) {
+      cleanString.push(string[idx]);
+    }
+  }
+  console.log(cleanString.join(''));
+}
+
+test('Madam, I"m Adam');
+
+*/
