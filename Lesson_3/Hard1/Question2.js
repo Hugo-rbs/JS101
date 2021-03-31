@@ -1,0 +1,1 @@
+// Because of the object value as a pointer I beleive that the last line will log: { first: [1, 2] }
