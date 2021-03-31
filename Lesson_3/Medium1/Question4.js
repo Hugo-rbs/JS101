@@ -15,3 +15,4 @@ function addToRollingBuffer2(buffer, maxBufferSize, newElement) {
 }
 
 // First method will mutate second won't
+
