@@ -1,20 +1,36 @@
-function isMultipleOfThree(number) {
- return number % 3 === 0;
-}
+// function wordSizes(string) {
+//   let wordsCount = {};
+//   let arrayOfLetters = string.split('');
+//   let arrayOfWords = string.split(' ');
 
-function isMultipleOfFive(number) {
-  return number % 5 === 0;
-}
+//   for (let idx = 0; idx < arrayOfWords.length; idx++) {
+//     let length = arrayOfWords[idx].length;
+//     if(length === 0) {
+//       continue;
+//     }
+//     if(!wordsCount[length]) {
+//       wordsCount[length] = 0;
+//     }
+//     wordsCount[length] += 1;
+//   }
+//   return wordsCount;
+// }
 
-function multisum(number) {
-  let result = 0
-  for (let multiple = 1; multiple <= number; multiple += 1) {
-    if (isMultipleOfFive(multiple) || isMultipleOfThree(multiple)) {
-      result += multiple;
+// console.log(wordSizes('Four score and seven.'));
+
+let string = 'Four score and seven.'
+
+let arrayOfChar = string.split('');
+
+
+
+function isLetter(array) {
+  let arrayOfWords = array.map(element => {
+    if (element.toLowerCase() >= 'a' && element.toUpperCase() <= 'z') {
+      return element;
     }
-  }
-  return result;
+  }).join('');
+  return arrayOfWords;
 }
 
-
-console.log(multisum(1000));
+console.log(isLetter(arrayOfChar));
