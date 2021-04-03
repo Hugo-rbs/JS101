@@ -1,36 +1,34 @@
-// function wordSizes(string) {
-//   let wordsCount = {};
-//   let arrayOfLetters = string.split('');
-//   let arrayOfWords = string.split(' ');
-
-//   for (let idx = 0; idx < arrayOfWords.length; idx++) {
-//     let length = arrayOfWords[idx].length;
-//     if(length === 0) {
-//       continue;
-//     }
-//     if(!wordsCount[length]) {
-//       wordsCount[length] = 0;
-//     }
-//     wordsCount[length] += 1;
-//   }
-//   return wordsCount;
-// }
-
-// console.log(wordSizes('Four score and seven.'));
-
-let string = 'Four score and seven.'
-
-let arrayOfChar = string.split('');
-
-
-
-function isLetter(array) {
-  let arrayOfWords = array.map(element => {
-    if (element.toLowerCase() >= 'a' && element.toUpperCase() <= 'z') {
-      return element;
-    }
-  }).join('');
-  return arrayOfWords;
+function isRealPalindrome(string) {
+  string = removeNonLettersOrNumbers(string.toLowerCase());
+  return isPalindrome(string);
+}
+function isPalindrome(string) {
+  return string.split('').reverse().join('') === string;
 }
 
-console.log(isLetter(arrayOfChar));
+function isLetter(char) {
+  return char >= 'a' && char <= 'z';
+}
+
+function isNumber(char) {
+  return char >= '0' && char <= '9';
+}
+
+function removeNonLettersOrNumbers(string) {
+  let newString = '';
+  for (let idx = 0; idx < string.length; idx++) {
+    if (isLetter(string[idx]) || isNumber(string[idx])) {
+      newString += string[idx];
+    }
+  }
+  return newString;
+}
+
+// console.log(isPalindrome(updatedString('madam')));
+// console.log(isPalindrome(updatedString('Madam')));
+// console.log(isPalindrome(updatedString("madam i'm adam")));
+
+console.log(isRealPalindrome('madam'));
+console.log(isRealPalindrome('Madam'));
+console.log(isRealPalindrome("Madam i'm adam"));
+
