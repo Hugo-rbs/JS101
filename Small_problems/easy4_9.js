@@ -13,7 +13,7 @@ function wordSizes(string) {
     result[wordSize] += 1;
   }
   return result;
- }
+}
 
 function isLetter(char) {
   return char >= 'a' && char <= 'z';
