@@ -10,8 +10,11 @@ function countOccurences(list) {
     }
     count[word] += 1;
   }
-  return count;
+  for (let prop in count) {
+    console.log(`${prop} => ${count[prop]}`);
+  }
+
 }
 
-console.log(countOccurences(['car', 'car', 'truck', 'car', 'SUV', 'truck',
-'motorcycle', 'motorcycle', 'car', 'truck']));
+countOccurences(['car', 'car', 'truck', 'car', 'SUV', 'truck',
+'motorcycle', 'motorcycle', 'car', 'truck']);
