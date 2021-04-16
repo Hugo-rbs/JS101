@@ -1,35 +1,29 @@
-function isRealPalindrome(string) {
-  string = removeNonLetterNumbers(string.toLowerCase());
-  return isPalindrome(string);
-}
+function cleanUp(text) {
+  let cleanText = '';
 
-function removeNonLetterNumbers(string) {
-  let result = '';
-
-  for (let idx = 0; idx < string.length; idx += 1) {
-    if (isLetter(string[idx]) || isNumber(string[idx])) {
-      result += string[idx];
+  for (let idx = 0; idx < text.length; idx += 1) {
+    if (isLowerCaseLetter(text[idx]) || isUpperCaseLetter(text[idx])) {
+      cleanText += text[idx];
+    } else if (cleanText[cleanText.length -1] !== ' ') {
+      cleanText += ' ';
     }
   }
 
-  return result;
+  return cleanText;
 }
 
-function isLetter(char) {
+function isLowerCaseLetter(char) {
   return char >= 'a' && char <= 'z';
 }
 
-function isNumber(char) {
-  return char >= '0' && char <= '9';
+function isUpperCaseLetter(char) {
+  return char >= 'A' && char <= 'Z';
 }
 
-function isPalindrome(string) {
-  return string.split('').reverse().join('') === string;
-}
+console.log(cleanUp("---what's my +*& line?"));
 
-isRealPalindrome('madam');               // true
-isRealPalindrome('Madam');               // true (case does not matter)
-console.log(isRealPalindrome("Madam, I'm Adam"));     // true (only alphanumerics matter)
-isRealPalindrome('356653');              // true
-isRealPalindrome('356a653');             // true
-isRealPalindrome('123ab321');            // false
+/*
+else if (cleanText[cleanText.length - 1] !== ' ') {
+  cleanText += ' ';
+}
+*/
