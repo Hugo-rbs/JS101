@@ -8,6 +8,21 @@ function crunch(str) {
   return newString.join('');
 }
 
+// alternative // 
+
+// function crunch(string) {
+//   let result = '';
+//   for (let idx = 0; idx < string.length; idx ++) {
+//     if(string[idx] === string[idx + 1]) {
+//       continue;
+//     } else {
+//       result += string[idx];
+//     }
+//   }
+//   return result;
+// }
+
+
 
 console.log(crunch('ddaaiillyy ddoouubbllee'));    // "daily double"
 console.log(crunch('4444abcabccba'));              // "4abcabcba"

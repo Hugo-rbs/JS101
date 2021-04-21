@@ -21,9 +21,3 @@ let flintstones = ["Fred", "Wilma", ["Barney", "Betty"], ["Bambam", "Pebbles"]];
 // flintstones = flintstones.reduce((accumulator, element) => accumulator.concat(element), []);
 // console.log(flintstones);
 
-flintstones = [flintstones.forEach(element => {
-  let array = element;
-array.forEach(element => element);
-})];
-
-console.log(flintstones);
