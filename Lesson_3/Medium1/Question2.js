@@ -6,3 +6,29 @@ console.log(munstersDescription.split('').map(char => {
     return char.toUpperCase();
   }
 }).join(''));
+
+// wordy solution // 
+
+// function isUpperCase(char) {
+//   return char >= 'A' && char <= 'Z';
+// }
+
+// function isLowerCase(char) {
+//   return char >= 'a' && char <= 'z';
+// }
+
+// function updatedString(string) {
+//   let result = '';
+//   for (let char = 0; char < string.length; char++) {
+//     if (isUpperCase(string[char])) {
+//       result += string[char].toLowerCase();
+//     } else if (isLowerCase(string[char])) {
+//       result += string[char].toUpperCase();
+//     } else {
+//       result += string[char];
+//     }
+//   }
+//   console.log(result);
+// }
+
+// updatedString(munstersDescription)
