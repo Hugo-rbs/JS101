@@ -1,20 +1,8 @@
-console.log(cleanUp("---what's my +*& line?"));    // " what s my line "
+let arr = ['jean', 'jacques'];
 
-
-function isLetter(char) {
-  char = char.toLowerCase();
-  return char >= 'a' && char <= 'z';
+function capitalize(names) {
+  return names.map(name => name[0].toUpperCase() + name.slice(1));
 }
 
-function cleanUp(string) {
-  let result = '';
-  for (let idx = 0; idx < string.length; idx++) {
-    let char = string[idx];
-    if (isLetter(char)) {
-      result += char;
-    } else if(result[result.length - 1] !== 0) {
-      result += ' ';
-    }
-  }
-  return result;
-}
+console.log(capitalize(arr));
+console.log(arr)
