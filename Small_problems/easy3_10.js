@@ -1,19 +1,25 @@
-function century(number) {
-  let century = 1;
-  for (let idx = 101; idx <= number; idx += 100) {
+// first solution //
+function century(year) {
+  let century = 0;
+  for (let idx = 1; idx <= year; idx += 100) {
     century += 1;
   }
-  century = century.toString();
-  let lastNumber = century[century.length -1];
-  let first = century[0];
-  if (century.length === 2 && first === '1') {
-    return century + 'th';
-  };
+  return lastOne(String(century));
+}
 
-  switch(lastNumber) {
-    case '1' : return century + 'st';
-    case '2' : return century + 'nd';
-    case '3': return century + 'rd';
-    default : return century + 'th';
+
+function lastTwo(string) {
+  return string.slice(string.length - 2) < 10 || string.slice(string.length - 2) > 20;
+}
+
+function lastOne (string) {
+  let last = string.slice(string.length - 1);
+  switch (lastTwo(string) && last) {
+    case '1' : return string + 'st';
+    case '2' : return string + 'nd';
+    case '3' : return string + 'rd';
+    default : return string + 'th';
   }
 }
+
+// provide another solution working with number rather then string // 
