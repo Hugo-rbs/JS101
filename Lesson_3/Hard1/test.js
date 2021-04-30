@@ -1,3 +1,14 @@
-let advice = `Il fait beau, il fait chaud, c'est le printemps`;
+str1 = 'This line has spaces';
+str2 = 'This,line,has,commas,';
+str3 = 'No-spaces-or-commas';
+// str4 = 'strawberry';
+// str5 = 'raspberry';
+// str6 = 'grappler';
 
-console.log(advice.slice(0, advice.indexOf(',')));
+
+
+
+
+console.log(str1.match(/\,| /g));
+console.log(str2.match(/\,| /));
+console.log(str3.match(/dragon/));
