@@ -1,9 +1,13 @@
-function greet(greeting = 'Hello', value = 'world') {
-  console.log(greeting + ', ' + value + '!');
+function utf16Value(string) {
+  let result = 0;
+  for (let idx = 0; idx < string.length; idx += 1) {
+    result += string.charCodeAt(idx);
+  }
+  console.log(result);
 }
 
-greet('Salutations'); // logs: Salutations, world!
 
-greet();              // logs: undefined, world!
-
-greet('Good morning', 'Launch School');
+utf16Value('Four score');         // 984
+utf16Value('Launch School');      // 1251
+utf16Value('a');                  // 97
+utf16Value('');
