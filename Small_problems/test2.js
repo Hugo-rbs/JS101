@@ -1,23 +1,21 @@
-const ARRAYOFDIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let produce = {
+  apple: 'Fruit',
+  carrot: 'Vegetable',
+  pear: 'Fruit',
+  broccoli: 'Vegetable'
+};
 
-function integerToString(number) {
-  let result = '';
-  do {
-    let remainder = number % 10;
-    number = Math.floor(number / 10);
-    result = ARRAYOFDIGITS[remainder] + result;
-  }  while (number > 0);
+function selectedFruit(listObject) {
+  let listKeys = Object.keys(listObject);
+  let result = {};
+  for (let idx = 0; idx < listKeys.length; idx += 1) {
+    let currentKey = listKeys[idx];
+    let currentValue = listObject[currentKey];
+    if (currentValue === 'Fruit') {
+      result[currentKey] = currentValue;
+    }
+  }
   return result;
 }
 
-function signedIntegerToString(number) {
-  switch(Math.sign(number)) {
-    case +1 : return `+${integerToString(number)}`;
-    case -1 : return `-${integerToString(-number)}`;
-    default : return integerToString(number);
-  }
-}
-
-console.log(signedIntegerToString(4321));
-console.log(signedIntegerToString(-123));
-console.log(signedIntegerToString(0));
+console.log(selectedFruit(produce));
