@@ -1,21 +1,17 @@
-let produce = {
-  apple: 'Fruit',
-  carrot: 'Vegetable',
-  pear: 'Fruit',
-  broccoli: 'Vegetable'
-};
-
-function selectedFruit(listObject) {
-  let listKeys = Object.keys(listObject);
-  let result = {};
-  for (let idx = 0; idx < listKeys.length; idx += 1) {
-    let currentKey = listKeys[idx];
-    let currentValue = listObject[currentKey];
-    if (currentValue === 'Fruit') {
-      result[currentKey] = currentValue;
+function changeMe(string) {
+  let result = [];
+  let arrayOfWords = string.split(' ');
+  arrayOfWords.forEach(word => {
+    if (word.split('').reverse().join('') === word) {
+      result.push(word.toUpperCase());
+    } else {
+      result.push(word);
     }
-  }
-  return result;
+  });
+  return result.join(' ');
 }
 
-console.log(selectedFruit(produce));
+console.log(changeMe('We will meet at noon'));
+console.log(changeMe("No palindromes here"));
+console.log(changeMe(''));
+console.log(changeMe("I LOVE my mom and dad equally"));

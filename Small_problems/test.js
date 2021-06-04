@@ -1,17 +1,5 @@
-function isLetter(char) {
-  return char.toLowerCase() >= 'a' && char.toLowerCase() <= 'z';
+function randomNumber() {
+  return Math.ceil(Math.random()* (120 - 20) + 20);
 }
 
-function cleanUp(string) {
-  let result = '';
-  for (let idx = 0; idx <= string.length; idx += 1) {
-    if (isLetter(string[idx])) {
-      result += string[idx];
-    } if (result.length -1 !== ' ') {
-      result += ' ';
-    }
-  }
-  return result;
-}
-
-console.log(cleanUp("---what's my +*& line?"));
+console.log(`Teddy is ${randomNumber()} age`);
