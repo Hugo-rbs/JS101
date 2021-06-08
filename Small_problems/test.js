@@ -1,5 +1,9 @@
-function randomNumber() {
-  return Math.ceil(Math.random()* (120 - 20) + 20);
+function isPalindromicNumber(number) {
+  number = String(number);
+  return number.split('').reverse().join('') === number;
 }
 
-console.log(`Teddy is ${randomNumber()} age`);
+console.log(isPalindromicNumber(34543));
+console.log(isPalindromicNumber(123210));
+console.log(isPalindromicNumber(22));
+console.log(isPalindromicNumber(5));
