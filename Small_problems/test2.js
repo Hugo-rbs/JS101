@@ -1,18 +1,19 @@
-let produce = {
-  apple: 'Fruit',
-  carrot: 'Vegetable',
-  pear: 'Fruit',
-  broccoli: 'Vegetable'
-};
-
-let produceKeysValues = Object.entries(produce);
-let onlyVeggies = {};
-
-produceKeysValues.forEach(keyValues => {
-  let [key, value] = keyValues;
-  if (value === 'Vegetable') {
-  onlyVeggies[key] = value;
+function swap(string) {
+  let stringToArray = string.split(' ');
+  for (let idx = 0; idx < stringToArray.length; idx ++) {
+    stringToArray[idx] = swapLetters(stringToArray[idx]);
   }
-});
+  return stringToArray.join(' ');
+}
 
-console.log(onlyVeggies);
+function swapLetters(word) {
+  if (word.length === 1) {
+    return word;
+  }
+  return word[word.length - 1] + word.slice(1, -1) + word[0];
+}
+
+
+console.log(swap('Abcde'));
+console.log(swap('Oh what a wonderful day it is'));
+console.log(swap('a'))
