@@ -19,12 +19,12 @@ console.log(swap('a'));
 // function swap(string) {
 //   let stringToArray = string.split(' ');
 //   for (let idx = 0; idx < stringToArray.length; idx ++) {
-//     stringToArray[idx] = swapLetters(stringToArray[idx]);
+//     stringToArray[idx] = swapFirstNLastLetters(stringToArray[idx]);
 //   }
 //   return stringToArray.join(' ');
 // }
 
-// function swapLetters(word) {
+// function swapFirstNLastLetters(word) {
 //   if (word.length === 1) {
 //     return word;
 //   }
