@@ -1,19 +1,21 @@
-function swap(string) {
- let stringToArray = string.split(' ');
-for (let idx = 0; idx < stringToArray.length; idx ++) {
-  stringToArray[idx] = swapLetters(stringToArray[idx]);
-}
-return stringToArray.join(' ');
+// function digitList(number) {
+//   let digits = [];
+//   while (number > 0) {
+//     let lastDigit = number % 10;
+//     digits.unshift(lastDigit);
+//     number = Math.floor(number / 10);
+//   }
+//   console.log(digits);
+// }
+
+function digitList(number) {
+  let digits = [];
+  let numberToString = String(number);
+  for (let idx = 0; idx < numberToString.length; idx += 1) {
+    let digit = parseInt(numberToString[idx], 10);
+    digits.push(digit);
+  }
+  console.log(digits);
 }
 
-function swapLetters(word) {
-if (word.length === 1) {
-return word;
-}
-return word[word.length - 1] + word.slice(1, -1) + word[0];
-}
-
-
-console.log(swap('Abcde'));
-console.log(swap('Oh what a wonderful day it is'));
-console.log(swap('a'))
+digitList(12345);
