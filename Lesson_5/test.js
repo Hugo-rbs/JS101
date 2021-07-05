@@ -6,13 +6,8 @@ let munsters = {
   Marilyn: { age: 23, gender: 'female'}
 };
 
-let names = Object.values(munsters);
+// should output -> Herman is a (age) years-old (gender)
 
-let totalAge = 0;
+// main object/sub object/ sub-object:key-value
 
-for (let idx = 0; idx < names.length; idx += 1) {
-  let age = names[idx].age;
-  totalAge += age;
-}
-
-console.log(totalAge)
+// print sub object is : print sub-object value 1 / sub-object value 2
