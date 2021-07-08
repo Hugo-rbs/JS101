@@ -1,11 +1,4 @@
-let munsters = {
-  herman: { age: 32, gender: 'male' },
-  lily: { age: 30, gender: 'female' },
-  grandpa: { age: 402, gender: 'male' },
-  eddie: { age: 10, gender: 'male' },
-  marilyn: { age: 23, gender: 'female'}
-};
+let arr = [[1, 6, 7], [1, 5, 3], [1, 8, 3]];
 
-for (let property in munsters) {
-  console.log(`${property} is a ${munsters[property].age} years-old ${munsters[property]['gender']}.`);
-}
+
+// should return: [ [ 1, 8, 3 ], [ 1, 6, 7 ], [ 1, 5, 3 ] ]
