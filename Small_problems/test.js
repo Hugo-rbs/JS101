@@ -1,56 +1,19 @@
-const readline = require('readline-sync');
+function isUppercase(str) {
+  
+  let arrayOfLetters = str.split('');
 
-function displayBoard (board) {
-  console.log("");
-  console.log(`     |     |`);
-  console.log(`  ${board['1']}  |  ${board['2']}  |  ${board['3']}`);
-  console.log(`     |     |`);
-  console.log(`-----+-----+-----`);
-  console.log(`     |     |`);
-  console.log(`  ${board['4']}  |  ${board['5']}  |  ${board['6']}`);
-  console.log(`     |     |`);
-  console.log(`-----+-----+-----`);
-  console.log(`     |     |`);
-  console.log(`  ${board['7']}  |  ${board['8']}  |  ${board['9']}`);
-  console.log(`     |     |`);
-  console.log("");
+  return arrayOfLetters.map(char => authorizedChar(char))
+                       .every(el => el === true);
 }
 
-function initializedBoard() {
-  let board = {};
-
-  for (let square = 1; square <= 9; square += 1) {
-    board[String(square)] = ' ';
-  }
-  return board;
+function authorizedChar(char) {
+  return char < 'a' || char > 'z';
 }
 
-let board = initializedBoard();
-
-displayBoard(board);
-
-function prompt(message) {
-  console.log(`==> ${message}`);
-}
-
-function playerChooseSquare(board) {
-  let square;
-  let emptySquares = Object.keys(board).filter(key => board[key] === ' ');
-  while (true) {
-    prompt(`Choose a square ${emptySquares.join(', ')}:`);
-    square = readline.question().trim();
-    if (emptySquares.includes(square)) {
-      break;
-    } else {
-      prompt("Sorry, that's not a valid choice.");
-    }
-  }
-  board[square] = 'X';
-}
-
-// playerChooseSquare(board);
-// displayBoard(board);
-console.log(board);
-// playerChooseSquare(board);
-// displayBoard(board);
+isUppercase('t');               // false
+isUppercase('T');               // true
+isUppercase('Four Score');      // false
+isUppercase('FOUR SCORE');      // true
+isUppercase('4SCORE!');         // true
+isUppercase('');                // true
 
