@@ -9,3 +9,13 @@ let orderedDescending = arr.map(subArr => {
 })
 
 console.log(orderedDescending)
+
+// other solution
+
+// let sortedArr = arr.map(subArr => {
+//   if (typeof(subArr[0]) === Number) {
+//     return subArr.sort((a, b) => a - b);
+//   } else {
+//     return subArr.sort();
+//   }
+// });

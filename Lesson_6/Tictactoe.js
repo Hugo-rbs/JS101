@@ -1,3 +1,5 @@
+const readline = require('readline-sync');
+
 function displayBoard (board) {
   console.log("");
   console.log(`     |     |`);
@@ -25,4 +27,27 @@ function initializedBoard() {
 
 let board = initializedBoard();
 
-displayBoard(board)
+displayBoard(board);
+
+function prompt(message) {
+  console.log(`==> ${message}`);
+}
+
+function playerChooseSquare(board) {
+  let square;
+  let emptySquares = Object.keys(board).filter(key => board[key] === ' ');
+  while (true) {
+    prompt(`Choose a square ${emptySquares.join(', ')}:`);
+    square = readline.question().trim();
+    if (emptySquares.includes(square)) {
+      break;
+    }
+    prompt("Sorry, that's not a valid choice.");
+  }
+  board[square] = 'X';
+}
+
+playerChooseSquare(board);
+displayBoard(board);
+playerChooseSquare(board);
+displayBoard(board);
