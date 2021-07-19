@@ -1,5 +1,3 @@
-// includes everything from the assignment without the bonuses //
-
 const readline = require('readline-sync');
 
 const PLAYER_MARKER = 'X';
@@ -46,7 +44,7 @@ function emptySquares(board) {
 function playerChooseSquare(board) {
   let square;
   while (true) {
-    prompt(`Choose a square ${emptySquares(board).join(', ')}:`);
+    prompt(`Choose a square ${joinOr(emptySquares(board))}:`);
     square = readline.question().trim();
     if (emptySquares(board).includes(square)) {
       break;
@@ -92,7 +90,16 @@ function detectWinner(board) {
   return null;
 }
 
+function joinOr(arr, delimiter1 = ', ', delimiter2 = 'or') {
 
+  switch(arr.length) {
+    case 0 : return '';
+    case 1 : return String(arr[0]);
+    case 2 : return arr.join(` ${delimiter2} `);
+    default : return arr.slice(0, arr.length - 1).join(delimiter1) + `${delimiter1}${delimiter2} ${arr[arr.length - 1]}`;
+  }
+
+}
 
 while (true) {
 
@@ -122,11 +129,11 @@ while (true) {
     prompt(`It's a tied`);
   }
 
-  // prompt('Play again? y/n');
-  // let anwser = readline.question().toLowerCase()[0];
-  // if (anwser !== 'y') {
-  //   break;
-  // }
+  prompt('Play again? y/n');
+  let anwser = readline.question().toLowerCase()[0];
+  if (anwser !== 'y') {
+    break;
+  }
 
 }
 

@@ -1,10 +1,16 @@
-// includes everything from the assignment without the bonuses //
+/*
+Tictacttoe w/ bonus keep score:
+
+Currently working on: everything is working except that the socre is not showing after each round 
+
+*/
 
 const readline = require('readline-sync');
 
 const PLAYER_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
 const INITIAL_MARKER = ' ';
+const WINNING_SCORE = 5;
 
 function prompt(message) {
   console.log(`==> ${message}`);
@@ -43,10 +49,21 @@ function emptySquares(board) {
   return Object.keys(board).filter(key => board[key] === INITIAL_MARKER);
 }
 
+function joinOr(arr, delimiter1 = ', ', delimiter2 = 'or') {
+
+  switch (arr.length) {
+    case 0 : return '';
+    case 1 : return String(arr[0]);
+    case 2 : return arr.join(` ${delimiter2} `);
+    default : return arr.slice(0, arr.length - 1).join(delimiter1) + `${delimiter1}${delimiter2} ${arr[arr.length - 1]}`;
+  }
+
+}
+
 function playerChooseSquare(board) {
   let square;
   while (true) {
-    prompt(`Choose a square ${emptySquares(board).join(', ')}:`);
+    prompt(`Choose a square ${joinOr(emptySquares(board))}:`);
     square = readline.question().trim();
     if (emptySquares(board).includes(square)) {
       break;
@@ -92,6 +109,53 @@ function detectWinner(board) {
   return null;
 }
 
+// keeping score //
+
+let score = {
+  Player : 0,
+  Computer : 0,
+};
+
+function updateScore(board) {
+
+  if (detectWinner(board) === 'Player') {
+    score.Player += 1;
+  } else if (detectWinner(board) === 'Computer') {
+    score.Computer += 1;
+  }
+}
+
+function displayScore() {
+  console.log(`Player: ${score.Player} | Computer: ${score.Computer}`)
+}
+
+function bestOfFive () {
+  return score.Player ===  WINNING_SCORE || score.Computer === WINNING_SCORE;
+}
+
+function displayGrandWinner() {
+  while (bestOfFive()) {
+    if (score.Player > score.Computer) {
+      console.log('You win the game!');
+      break;
+    } else {
+      console.log('computer wins the game');
+      break;
+    }
+  }
+}
+
+function resetScore() {
+
+  score = {
+    Player : 0,
+    Computer : 0,
+  };
+
+}
+
+// ^ keeping score ^ //
+
 
 
 while (true) {
@@ -122,12 +186,12 @@ while (true) {
     prompt(`It's a tied`);
   }
 
-  // prompt('Play again? y/n');
-  // let anwser = readline.question().toLowerCase()[0];
-  // if (anwser !== 'y') {
-  //   break;
-  // }
-
+  prompt('Play again? y/n');
+  let anwser = readline.question().toLowerCase()[0];
+  if (anwser !== 'y') {
+    break;
+  }
+  
 }
 
 prompt('Thanks for playing Tic Tac Toe!');
