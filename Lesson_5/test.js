@@ -1,17 +1,11 @@
-let vehicle = {
-  Manufacturer : 'Tesla',
-  Model : 'Model X',
-  year : 2015,
-  range : 295,
-  Seats : 7
-};
+let test = ['Vivien', 'Jayne', ['Gaspard', 'Melanie'], ['Apolline', 'Bastien']];
 
-let keys = Object.keys(vehicle);
-let keys2 = [];
+let test2 = [].concat(...test);
+console.log(test2);
 
-for (let prop in vehicle) {
-  keys2.push(prop);
-}
+test3 = test.reduce((arr, el) => arr.concat(el), []);
+console.log(test3);
 
-console.log(keys);
-console.log(keys2);
+let test4 = [];
+test.forEach(el => test4 = test4.concat(el));
+console.log(test4);

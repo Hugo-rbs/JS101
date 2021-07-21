@@ -13,7 +13,7 @@ function prompt(message) {
 function displayBoard (board) {
   console.clear();
 
-  console.log(`You are ${PLAYER_MARKER}. Computer is ${COMPUTER_MARKER}`)
+  console.log(`You are ${PLAYER_MARKER}. Computer is ${COMPUTER_MARKER}`);
 
   console.log("");
   console.log(`     |     |`);
@@ -91,7 +91,6 @@ function detectWinner(board) {
   }
   return null;
 }
-
 
 
 while (true) {

@@ -1,12 +1,9 @@
-let passcode = ['11', 'jz5', 'hQf3', 'lS2a', 'nMnP1'];
-// let joinedPassword = '';
-// for (let idx = 0; idx < passcode.length; idx += 1) {
-//   if (idx > 0) {
-//     joinedPassword += '-';
-//   }
-//   joinedPassword += passcode[idx];
-// }
+let arr = [{ a: 1 }, { b: 2, c: 3 }, { d: 4, e: 5, f: 6 }];
+console.log(arr.map(obj => {
+  let incrementedObj = {};
+  for (let prop in obj) {
+    incrementedObj[prop] = obj[prop] + 1;
+  }
+  return incrementedObj;
+}));
 
-let joinedPassword = passcode.join('-');
-
-console.log(joinedPassword)

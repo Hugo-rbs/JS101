@@ -11,7 +11,7 @@ function prompt(message) {
 function displayBoard (board) {
   console.clear();
 
-  console.log(`You are ${PLAYER_MARKER}. Computer is ${COMPUTER_MARKER}`)
+  console.log(`You are ${PLAYER_MARKER}. Computer is ${COMPUTER_MARKER}`);
 
   console.log("");
   console.log(`     |     |`);
@@ -92,7 +92,7 @@ function detectWinner(board) {
 
 function joinOr(arr, delimiter1 = ', ', delimiter2 = 'or') {
 
-  switch(arr.length) {
+  switch (arr.length) {
     case 0 : return '';
     case 1 : return String(arr[0]);
     case 2 : return arr.join(` ${delimiter2} `);
