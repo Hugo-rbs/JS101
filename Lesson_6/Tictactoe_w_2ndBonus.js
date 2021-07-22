@@ -10,7 +10,6 @@ const readline = require('readline-sync');
 const PLAYER_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
 const INITIAL_MARKER = ' ';
-const WINNING_SCORE = 5;
 
 function prompt(message) {
   console.log(`==> ${message}`);

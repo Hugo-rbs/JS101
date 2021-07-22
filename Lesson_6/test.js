@@ -5,15 +5,23 @@ const readline = require('readline-sync');
 const PLAYER_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
 const INITIAL_MARKER = ' ';
-const ROUNDS_TO_PLAY = 5;
+const WINNING_SCORE = 5;
 const WINNING_LINES = [
   [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
   [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
   [1, 5, 9], [3, 5, 7] // diagonals
 ];
 
+let roundsToPlay = WINNING_SCORE;
+
+let score = {
+  player : 0,
+  computer : 0,
+  tie: 0
+};
+
 function prompt(message) {
-  console.log(`==> ${message}`);
+  console.log(`=> ${message}`);
 }
 
 function displayBoard (board) {
@@ -104,40 +112,87 @@ function joinOr(arr, delimiter1 = ', ', delimiter2 = 'or') {
 
 }
 
-while (true) {
+// BONUS - part 2 - score //
 
-  let board = initializedBoard();
+function keepingScore(board) {
+  if (someoneWon(board) && detectWinner(board) === 'Player') {
+    score.player += 1;
+  } else if (someoneWon(board) && detectWinner(board) === 'Computer') {
+    score.computer += 1;
+  } else {
+    score.tie += 1;
+  }
+}
+
+function roundToPlay(board) {
+  if (someoneWon(board)) {
+    roundsToPlay -= 1;
+  }
+  console.log(`Rounds to play: ${roundsToPlay}`);
+}
+
+function resetScore() {
+  for (let prop in score) {
+    score[prop] = 0;
+  }
+  }
+
+function resetRoundsToPlay() {
+  roundsToPlay = WINNING_SCORE;
+}
+
+//^BONUS - part 2 - score ^//
+
+while(true) {
 
   while (true) {
 
+    let board = initializedBoard();
+
+    while (true) {
+
+      displayBoard(board);
+
+      playerChooseSquare(board);
+      if  (someoneWon(board) || boardIsFull(board)) {
+        break;
+      }
+
+      computerChooseSquare(board);
+      if  (someoneWon(board) || boardIsFull(board)) {
+        break;
+      }
+
+    }
+
     displayBoard(board);
 
-    playerChooseSquare(board);
-    if  (someoneWon(board) || boardIsFull(board)) {
+    if (someoneWon(board)) {
+      prompt(`${detectWinner(board)} win the round!`);
+    } else {
+      prompt(`It's a tied`);
+    }
+
+    keepingScore(board);
+    roundToPlay(board);
+    console.log(`Score - Player: ${score.player} | Computer: ${score.computer} | Tie: ${score.tie}`);
+
+    if (roundsToPlay === 0) {
       break;
     }
 
-    computerChooseSquare(board);
-    if  (someoneWon(board) || boardIsFull(board)) {
+    prompt('Play next round? y/n');
+    let anwser = readline.question().toLowerCase()[0];
+    if (anwser !== 'y') {
       break;
     }
-
   }
-
-  displayBoard(board);
-
-  if (someoneWon(board)) {
-    prompt(`${detectWinner(board)} won!`);
-  } else {
-    prompt(`It's a tied`);
-  }
-
-  prompt('Play again? y/n');
+  resetScore();
+  resetRoundsToPlay();
+  prompt('Play another game? y/n');
   let anwser = readline.question().toLowerCase()[0];
   if (anwser !== 'y') {
     break;
   }
 
 }
-
-prompt('Thanks for playing Tic Tac Toe!');
