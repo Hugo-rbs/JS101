@@ -1,24 +1,28 @@
-/*
-Tictacttoe w/ bonus keep score:
+// fully working  - DO NOT MODIFY //
 
-Currently working on: everything is working except that the socre is not showing after each round 
-
-*/
+/// with 2nd bonus - fully working //
 
 const readline = require('readline-sync');
 
 const PLAYER_MARKER = 'X';
 const COMPUTER_MARKER = 'O';
 const INITIAL_MARKER = ' ';
+const WINNING_SCORE = 5;
+const WINNING_LINES = [
+  [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
+  [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
+  [1, 5, 9], [3, 5, 7] // diagonals
+];
+
 
 function prompt(message) {
-  console.log(`==> ${message}`);
+  console.log(`=> ${message}`);
 }
 
 function displayBoard (board) {
   console.clear();
 
-  console.log(`You are ${PLAYER_MARKER}. Computer is ${COMPUTER_MARKER}`)
+  console.log(`You are ${PLAYER_MARKER}. Computer is ${COMPUTER_MARKER}`);
 
   console.log("");
   console.log(`     |     |`);
@@ -44,19 +48,23 @@ function initializedBoard() {
   return board;
 }
 
-function emptySquares(board) {
-  return Object.keys(board).filter(key => board[key] === INITIAL_MARKER);
+function initializeScore() {
+
+  let score = {
+    player : 0,
+    computer : 0,
+    tie: 0,
+    roundsToPlay : WINNING_SCORE
+  };
+  return score;
 }
 
-function joinOr(arr, delimiter1 = ', ', delimiter2 = 'or') {
+function displayScore(score) {
+  console.log(`Rounds to play: ${score.roundsToPlay}\nScore - Player: ${score.player} | Computer: ${score.computer} | Tie: ${score.tie}`);
+}
 
-  switch (arr.length) {
-    case 0 : return '';
-    case 1 : return String(arr[0]);
-    case 2 : return arr.join(` ${delimiter2} `);
-    default : return arr.slice(0, arr.length - 1).join(delimiter1) + `${delimiter1}${delimiter2} ${arr[arr.length - 1]}`;
-  }
-
+function emptySquares(board) {
+  return Object.keys(board).filter(key => board[key] === INITIAL_MARKER);
 }
 
 function playerChooseSquare(board) {
@@ -87,14 +95,9 @@ function someoneWon(board) {
 }
 
 function detectWinner(board) {
-  let winningCombos = [
-    [1, 2, 3], [4, 5, 6], [7, 8, 9], // rows
-    [1, 4, 7], [2, 5, 8], [3, 6, 9], // columns
-    [1, 5, 9], [3, 5, 7] // diagonals
-  ];
 
-  for (let idx = 0; idx < winningCombos.length; idx += 1) {
-    let [sq1, sq2, sq3] = winningCombos[idx];
+  for (let idx = 0; idx < WINNING_LINES.length; idx += 1) {
+    let [sq1, sq2, sq3] = WINNING_LINES[idx];
     if (board[sq1] === PLAYER_MARKER &&
         board[sq2] === PLAYER_MARKER &&
         board[sq3] === PLAYER_MARKER) {
@@ -108,89 +111,104 @@ function detectWinner(board) {
   return null;
 }
 
-// keeping score //
+function joinOr(arr, delimiter1 = ', ', delimiter2 = 'or') {
 
-let score = {
-  Player : 0,
-  Computer : 0,
-};
+  switch (arr.length) {
+    case 0 : return '';
+    case 1 : return String(arr[0]);
+    case 2 : return arr.join(` ${delimiter2} `);
+    default : return arr.slice(0, arr.length - 1).join(delimiter1) + `${delimiter1}${delimiter2} ${arr[arr.length - 1]}`;
+  }
 
-function updateScore(board) {
+}
 
-  if (detectWinner(board) === 'Player') {
-    score.Player += 1;
-  } else if (detectWinner(board) === 'Computer') {
-    score.Computer += 1;
+// BONUS - part 2 - score //
+
+function keepingScore(board, score) {
+  if (someoneWon(board) && detectWinner(board) === 'Player') {
+    score.player += 1;
+  } else if (someoneWon(board) && detectWinner(board) === 'Computer') {
+    score.computer += 1;
+  } else {
+    score.tie += 1;
+  }
+  score.roundsToPlay -= 1;
+  return score;
+}
+
+function grandWinner(score) {
+  if (score.roundsToPlay === 0 && score.player > score.computer) {
+    console.log(`You win the game!`);
+  } else if (score.roundsToPlay === 0 && score.player < score.computer) {
+    console.log('The computer wins the game');
+  } else if (score.roundsToPlay === 0) {
+    console.log('The game is a tie');
   }
 }
 
-function displayScore() {
-  console.log(`Player: ${score.Player} | Computer: ${score.Computer}`)
-}
 
-function bestOfFive () {
-  return score.Player ===  WINNING_SCORE || score.Computer === WINNING_SCORE;
-}
-
-function displayGrandWinner() {
-  while (bestOfFive()) {
-    if (score.Player > score.Computer) {
-      console.log('You win the game!');
-      break;
-    } else {
-      console.log('computer wins the game');
-      break;
-    }
-  }
-}
-
-function resetScore() {
-
-  score = {
-    Player : 0,
-    Computer : 0,
-  };
-
-}
-
-// ^ keeping score ^ //
-
-
+//^BONUS - part 2 - score ^//
 
 while (true) {
 
-  let board = initializedBoard();
+  let score = initializeScore();
 
   while (true) {
 
+    let board = initializedBoard();
+
+    while (true) {
+
+      displayBoard(board);
+
+      playerChooseSquare(board);
+      if  (someoneWon(board) || boardIsFull(board)) {
+        break;
+      }
+
+      computerChooseSquare(board);
+      if  (someoneWon(board) || boardIsFull(board)) {
+        break;
+      }
+
+    }
+
     displayBoard(board);
 
-    playerChooseSquare(board);
-    if  (someoneWon(board) || boardIsFull(board)) {
+    if (someoneWon(board)) {
+      prompt(`${detectWinner(board)} win the round!`);
+    } else {
+      prompt(`It's a tied`);
+    }
+
+    keepingScore(board, score);
+    displayScore(score);
+
+    if (score.roundsToPlay === 0) {
       break;
     }
 
-    computerChooseSquare(board);
-    if  (someoneWon(board) || boardIsFull(board)) {
+    prompt('Play next round? (y/n)');
+    let anwser = readline.question().toLowerCase()[0];
+    while (!/y|n/i.test(anwser)) {
+      prompt('Please provide a valid anwser');
+      anwser = readline.question().toLowerCase()[0];
+      console.clear();
+    }
+    if (anwser === 'n') {
       break;
     }
 
   }
 
-  displayBoard(board);
+  grandWinner(score);
 
-  if (someoneWon(board)) {
-    prompt(`${detectWinner(board)} won!`);
-  } else {
-    prompt(`It's a tied`);
-  }
-
-  prompt('Play again? y/n');
+  prompt('Play another game? (y/n)');
   let anwser = readline.question().toLowerCase()[0];
   if (anwser !== 'y') {
     break;
   }
-  
+
 }
 
-prompt('Thanks for playing Tic Tac Toe!');
+console.log('Thank you for playing Tictactoe!');

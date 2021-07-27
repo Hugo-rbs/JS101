@@ -1,4 +1,4 @@
-// see Tictactoe part for elements worked on //
+// with 2nd bonus - fully working //
 
 const readline = require('readline-sync');
 
@@ -12,13 +12,6 @@ const WINNING_LINES = [
   [1, 5, 9], [3, 5, 7] // diagonals
 ];
 
-let roundsToPlay = WINNING_SCORE;
-
-let score = {
-  player : 0,
-  computer : 0,
-  tie: 0
-};
 
 function prompt(message) {
   console.log(`=> ${message}`);
@@ -51,6 +44,21 @@ function initializedBoard() {
     board[String(square)] = INITIAL_MARKER;
   }
   return board;
+}
+
+function initializeScore() {
+
+  let score = {
+    player : 0,
+    computer : 0,
+    tie: 0,
+    roundsToPlay : WINNING_SCORE
+  };
+  return score;
+}
+
+function displayScore(score) {
+  console.log(`Rounds to play: ${score.roundsToPlay}\nScore - Player: ${score.player} | Computer: ${score.computer} | Tie: ${score.tie}`);
 }
 
 function emptySquares(board) {
@@ -114,7 +122,7 @@ function joinOr(arr, delimiter1 = ', ', delimiter2 = 'or') {
 
 // BONUS - part 2 - score //
 
-function keepingScore(board) {
+function keepingScore(board, score) {
   if (someoneWon(board) && detectWinner(board) === 'Player') {
     score.player += 1;
   } else if (someoneWon(board) && detectWinner(board) === 'Computer') {
@@ -122,28 +130,26 @@ function keepingScore(board) {
   } else {
     score.tie += 1;
   }
+  score.roundsToPlay -= 1;
+  return score;
 }
 
-function roundToPlay(board) {
-  if (someoneWon(board)) {
-    roundsToPlay -= 1;
+function grandWinner(score) {
+  if (score.roundsToPlay === 0 && score.player > score.computer) {
+    console.log(`You win the game!`);
+  } else if (score.roundsToPlay === 0 && score.player < score.computer) {
+    console.log('The computer wins the game');
+  } else if (score.roundsToPlay === 0) {
+    console.log('The game is a tie');
   }
-  console.log(`Rounds to play: ${roundsToPlay}`);
 }
 
-function resetScore() {
-  for (let prop in score) {
-    score[prop] = 0;
-  }
-  }
-
-function resetRoundsToPlay() {
-  roundsToPlay = WINNING_SCORE;
-}
 
 //^BONUS - part 2 - score ^//
 
-while(true) {
+while (true) {
+
+  let score = initializeScore();
 
   while (true) {
 
@@ -173,26 +179,34 @@ while(true) {
       prompt(`It's a tied`);
     }
 
-    keepingScore(board);
-    roundToPlay(board);
-    console.log(`Score - Player: ${score.player} | Computer: ${score.computer} | Tie: ${score.tie}`);
+    keepingScore(board, score);
+    displayScore(score);
 
-    if (roundsToPlay === 0) {
+    if (score.roundsToPlay === 0) {
       break;
     }
 
-    prompt('Play next round? y/n');
+    prompt('Play next round? (y/n)');
     let anwser = readline.question().toLowerCase()[0];
-    if (anwser !== 'y') {
+    while (!/y|n/i.test(anwser)) {
+      prompt('Please provide a valid anwser');
+      anwser = readline.question().toLowerCase()[0];
+      console.clear();
+    }
+    if (anwser === 'n') {
       break;
     }
+
   }
-  resetScore();
-  resetRoundsToPlay();
-  prompt('Play another game? y/n');
+
+  grandWinner(score);
+
+  prompt('Play another game? (y/n)');
   let anwser = readline.question().toLowerCase()[0];
   if (anwser !== 'y') {
     break;
   }
 
 }
+
+console.log('Thank you for playing Tictactoe!');
