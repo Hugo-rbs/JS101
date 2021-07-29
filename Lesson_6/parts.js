@@ -1,65 +1,38 @@
 // working on...//
-// keeping score & best to five (best player out of 5 games)//
-
 /*
-What do we need
+Computer AI - Defense
 
-a way to keep track of the score after each round is played / this needs to be printed on the screen 
+goal : instead of having the computer randomly pick up a square, it should check for immediate threats and defend accordingly.
+An immediate threat occurs when the player has already 2 squares in a row and the 3rd one is unoccupied. 
 
-1. keeping track of the score:
-- set a ROUND_TO_PLAY: 5
-- use the detectWinner function to increment the Player or Computer score
-- use the someoneWon function to decrement the number of rounds to play
-- if the number of round played is equal to round to play stop
-- show the score and grandWinner
-- reset the score 
-- new game? 
+1.Check what squares were already marked by the player
+2. If the squares that were already marked matches the list of possible threats have the computer choose the 3rd square,
+else have the computer mak a random choice.
 
-// incrementing the player or computer score //
+------------------------------------------------------------------------------------
 
-we need to store the result somewhere increase it and print it at each round;
-- to store it, we can store it in an object:
-score = {
-  Player : 0;
-  Computer : 0,
-}
-- we can create a function to increase the score in the object accordingly
-- console.log to print it 
+a.Checking for squares marked by player: 
+1. create a variable POSSIBLE_THREATS with all the combination of possible threats
+2. iterate through the array of possible threats, if a threat is detected have the computer choose the 3rd square 
 
 
-example of expected output: 
-
-Rounds left to play: 4
-Score - Player: 0 | Computer 1
-
-You win the game!
------------------
-Rounds played: 5
-Score - Player: 3 | Computer : 1 | Tie : 1
-------------------------------------------
-Would you like to play another game (y/n)
 */
 
-function keepingScore() {
-  if (detectWinner(board) === 'Player') {
-    score.player += 1;
-  } else if (detectWinner(board) === 'Computer') {
-    score.computer += 1;
-  } else {
-    score.tie += 1;
-  }
-}
+const POSSIBLE_THREATS = [
+  [1, 2], [2, 3], [1, 3], // line
+  [4, 5], [5, 6], [4, 6], // line
+  [7, 8], [8, 9], [7, 9], // line
+  [1, 4], [4, 7], [1, 7], // column
+  [2, 5], [5, 8], [2, 8], // column
+  [3, 6], [6, 9], [3, 9], // column
+  [1, 5], [5, 9], [1, 9], // diagonal
+  [3, 5], [5, 7], [3, 7], // diagonal
+];
 
-function roundToPlay(board) {
-  let roundsToPlay = WINNING_SCORE;
-  if (someoneWon(board)) {
-    roundsToPlay -= 1;
+function detectThreat(board) {
+  for (let idx = 0; idx < POSSIBLE_THREATS.length; idx += 1) {
+    let [sq1, sq2] = POSSIBLE_THREATS[idx];
+    if (board[sq1] === PLAYER_MARKER &&
+      board[sq2] === PLAYER_MARKER) 
   }
-  console.log(`Rounds to play: ${roundsToPlay}`);
-}
-
-function resetScore() {
-for (let prop in score) {
-  score[prop] = 0;
-}
 }
