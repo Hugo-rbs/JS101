@@ -11,4 +11,4 @@ function swapCase(string) {
 }
 
 console.log(swapCase('CamelCase'));
-console.log(swapCase('Tonight on XYZ-TV'))
+console.log(swapCase('Tonight on XYZ-TV'));
